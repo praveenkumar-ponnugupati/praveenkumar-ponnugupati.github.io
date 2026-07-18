@@ -169,16 +169,6 @@ section.alt-bg .inner { max-width: 1140px; margin: 0 auto; padding: 0 6%; }
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-/* Scroll cue */
-.scroll-cue {
-  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  color: var(--muted); font-family: var(--font-m); font-size: 0.7rem;
-  letter-spacing: 2px; text-transform: uppercase; animation: bounce 2s infinite;
-}
-@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
-.scroll-cue svg { opacity: 0.5; }
-
 /* ── ABOUT ── */
 .about-grid { display: grid; grid-template-columns: 1fr 220px; gap: 56px; align-items: start; }
 .about-text p { color: var(--muted); margin-bottom: 16px; line-height: 1.9; font-size: 0.95rem; }
@@ -374,10 +364,6 @@ footer span { color: var(--accent); }
     </div>
   </div>
 </section>
-<div class="scroll-cue">
-  <span>scroll</span>
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-</div>
 </div>
 
 <!-- ABOUT -->
@@ -487,7 +473,7 @@ footer span { color: var(--accent); }
 
     <div class="tl-item reveal">
       <div class="tl-dot edu"></div>
-      <div class="tl-date">2018 — 2021</div>
+      <div class="tl-date">JUL 2018 — MAY 2021</div>
       <div class="tl-role">B.Tech, Aerospace Engineering</div>
       <div class="tl-company edu-co">Bharath Institute of Higher Education and Research · Chennai, India</div>
     </div>
@@ -683,11 +669,11 @@ footer span { color: var(--accent); }
     </div>
     <div class="skill-group reveal reveal-delay-2">
       <div class="skill-group-title">Agentic AI</div>
-      <div class="skill-tags"><span>Ollama</span><span>Supermemory</span><span>LLM Agents</span><span>RAG</span><span>Tool Use</span><span>Local LLM</span></div>
+      <div class="skill-tags"><span>LLM Agents</span><span>RAG</span><span>Tool Use</span><span>Ollama</span><span>Supermemory</span><span>Local LLM</span><span>Prompt Engineering</span></div>
     </div>
     <div class="skill-group reveal reveal-delay-3">
       <div class="skill-group-title">Deep Learning / LLM</div>
-      <div class="skill-tags"><span>PyTorch</span><span>HuggingFace</span><span>Qwen 2.5</span><span>RNN</span></div>
+      <div class="skill-tags"><span>PyTorch</span><span>HuggingFace</span><span>Qwen 2.5</span><span>Stockfish Integration</span><span>RNN</span></div>
     </div>
     <div class="skill-group reveal reveal-delay-3">
       <div class="skill-group-title">Data Platforms</div>
@@ -695,19 +681,11 @@ footer span { color: var(--accent); }
     </div>
     <div class="skill-group reveal">
       <div class="skill-group-title">Cloud & Infrastructure</div>
-      <div class="skill-tags"><span>AWS</span><span>Azure</span><span>Red Hat</span><span>Ubuntu</span><span>VMware vSphere</span></div>
+      <div class="skill-tags"><span>AWS</span><span>Azure</span><span>Red Hat</span><span>Ubuntu</span></div>
     </div>
     <div class="skill-group reveal reveal-delay-1">
       <div class="skill-group-title">DevOps</div>
-      <div class="skill-tags"><span>Terraform</span><span>Git / GitLab</span><span>CI/CD</span><span>Puppet</span><span>Red Hat Satellite</span></div>
-    </div>
-    <div class="skill-group reveal reveal-delay-2">
-      <div class="skill-group-title">Certifications</div>
-      <div class="skill-tags"><span>RHCSA</span></div>
-    </div>
-    <div class="skill-group reveal reveal-delay-3">
-      <div class="skill-group-title">ITSM & Collab</div>
-      <div class="skill-tags"><span>ServiceNow</span><span>Confluence</span></div>
+      <div class="skill-tags"><span>Terraform</span><span>Git / GitLab</span><span>CI/CD</span><span>Puppet</span><span>RHCSA Certified</span></div>
     </div>
   </div>
 </div>
