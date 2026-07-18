@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praveen Kumar Ponnugupati | Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --bg:      #0d1117;
+  --bg2:     #161b22;
+  --bg3:     #1c2130;
+  --border:  #30363d;
+  --accent:  #64ffda;
+  --blue:    #58a6ff;
+  --muted:   #8b949e;
+  --text:    #e6edf3;
+  --font-h:  'Space Grotesk', sans-serif;
+  --font-b:  'Inter', sans-serif;
+  --font-m:  'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-b); line-height: 1.6; overflow-x: hidden; }
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(13,17,23,0.9); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6%; height: 60px;
+}
+.nav-logo {
+  font-family: var(--font-m); font-size: 0.95rem;
+  color: var(--accent); letter-spacing: 2px;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-family: var(--font-m); font-size: 0.78rem;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  transition: color .2s; position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 1px; background: var(--accent); transform: scaleX(0);
+  transition: transform .2s; transform-origin: left;
+}
+.nav-links a.active { color: var(--accent); }
+.nav-links a.active::after { transform: scaleX(1); }
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ── SECTIONS ── */
+section {
+  padding: 90px 6%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+section.alt-bg {
+  max-width: 100%;
+  background: var(--bg2);
+  padding: 90px 0;
+}
+section.alt-bg .inner { max-width: 1140px; margin: 0 auto; padding: 0 6%; }
+
+.section-label {
+  font-family: var(--font-m); font-size: 0.75rem;
+  color: var(--accent); letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.section-title {
+  font-family: var(--font-h); font-size: 2rem; font-weight: 700;
+  color: var(--text); margin-bottom: 52px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  gap: 48px; padding-top: 60px;
+  max-width: 1140px; margin: 0 auto; padding-left: 6%; padding-right: 6%;
+}
+.hero-left { flex: 1; min-width: 0; }
+.hero-tag {
+  font-family: var(--font-m); color: var(--accent); font-size: 0.88rem;
+  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+}
+.hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+.hero-name {
+  font-family: var(--font-h);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800; color: var(--text);
+  line-height: 1.1; margin-bottom: 14px;
+}
+.hero-title {
+  font-family: var(--font-h);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--muted); font-weight: 500; margin-bottom: 24px;
+}
+.hero-title .typed-wrap { color: var(--accent); }
+.hero-desc {
+  max-width: 480px; color: var(--muted);
+  font-size: 0.95rem; margin-bottom: 36px; line-height: 1.85;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  display: inline-block; padding: 12px 28px; border-radius: 6px;
+  font-family: var(--font-m); font-size: 0.82rem; font-weight: 500;
+  text-decoration: none; letter-spacing: 1px;
+  transition: all .2s; cursor: pointer; border: none;
+}
+.btn-primary {
+  background: transparent; color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.btn-primary:hover { background: rgba(100,255,218,0.08); box-shadow: 0 0 20px rgba(100,255,218,0.15); }
+.btn-secondary {
+  background: transparent; color: var(--muted); border: 1px solid var(--border);
+}
+.btn-secondary:hover { color: var(--text); border-color: var(--muted); }
+
+/* Terminal */
+.hero-right { flex: 0 0 420px; }
+.terminal {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+}
+.terminal-bar {
+  background: var(--bg3); padding: 12px 16px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+.terminal-title { font-family: var(--font-m); font-size: 0.75rem; color: var(--muted); margin-left: auto; margin-right: auto; }
+.terminal-body { padding: 20px; font-family: var(--font-m); font-size: 0.8rem; line-height: 1.9; min-height: 280px; }
+.t-line { display: block; }
+.t-prompt { color: var(--accent); }
+.t-cmd { color: var(--text); }
+.t-out { color: var(--muted); padding-left: 16px; }
+.t-key { color: var(--blue); }
+.t-val { color: #e3b341; }
+.t-comment { color: #555d68; }
+.t-cursor {
+  display: inline-block; width: 8px; height: 14px;
+  background: var(--accent); animation: blink 1s step-end infinite;
+  vertical-align: middle; margin-left: 2px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* Scroll cue */
+.scroll-cue {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--muted); font-family: var(--font-m); font-size: 0.7rem;
+  letter-spacing: 2px; text-transform: uppercase; animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+.scroll-cue svg { opacity: 0.5; }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 220px; gap: 56px; align-items: start; }
+.about-text p { color: var(--muted); margin-bottom: 16px; line-height: 1.9; font-size: 0.95rem; }
+.about-text p .hi { color: var(--accent); font-weight: 600; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 14px; text-align: center;
+  transition: border-color .2s;
+}
+.stat-card:hover { border-color: var(--accent); }
+.stat-number { font-family: var(--font-h); font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+.stat-label { font-family: var(--font-m); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px;
+  width: 2px; background: var(--border);
+}
+.tl-item { position: relative; margin-bottom: 48px; }
+.tl-dot {
+  position: absolute; left: -32px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid var(--bg2);
+  box-shadow: 0 0 0 2px currentColor;
+}
+.tl-dot.work { color: var(--accent); background: var(--accent); }
+.tl-dot.edu  { color: var(--blue);  background: var(--blue); }
+.tl-date { font-family: var(--font-m); font-size: 0.72rem; color: var(--muted); letter-spacing: 1px; margin-bottom: 4px; }
+.tl-role { font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; color: var(--text); }
+.tl-company { font-size: 0.88rem; margin-bottom: 8px; }
+.tl-company.work-co { color: var(--accent); }
+.tl-company.edu-co  { color: var(--blue); }
+.tl-summary { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+.tl-bullets { list-style: none; }
+.tl-bullets li {
+  color: var(--muted); font-size: 0.875rem; margin-bottom: 6px;
+  padding-left: 18px; position: relative; line-height: 1.65;
+}
+.tl-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+.tl-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tl-stack span {
+  background: rgba(100,255,218,0.06); border: 1px solid rgba(100,255,218,0.18);
+  color: var(--accent); font-family: var(--font-m); font-size: 0.7rem;
+  padding: 2px 10px; border-radius: 20px;
+}
+
+/* ── PROJECTS ── */
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.project-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px; display: flex; flex-direction: column;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 40px rgba(100,255,218,0.08);
+}
+.project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.project-icon { font-size: 1.6rem; }
+.project-link { color: var(--muted); transition: color .2s; }
+.project-link:hover { color: var(--accent); }
+.project-name { font-family: var(--font-h); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.project-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.75; margin-bottom: 16px; flex: 1; }
+.project-highlights { list-style: none; margin-bottom: 16px; }
+.project-highlights li {
+  color: var(--muted); font-size: 0.81rem; padding-left: 14px;
+  position: relative; margin-bottom: 5px; line-height: 1.55;
+}
+.project-highlights li::before { content: '→'; position: absolute; left: 0; color: var(--blue); }
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-tags span {
+  background: rgba(88,166,255,0.07); border: 1px solid rgba(88,166,255,0.2);
+  color: var(--blue); font-family: var(--font-m); font-size: 0.7rem;
+  padding: 2px 10px; border-radius: 20px;
+}
+
+/* ── SKILLS ── */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.skill-group {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px; transition: border-color .2s;
+}
+.skill-group:hover { border-color: rgba(100,255,218,0.3); }
+.skill-group-title {
+  font-family: var(--font-m); font-size: 0.7rem;
+  color: var(--accent); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 14px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.skill-tags span {
+  background: var(--bg2); color: var(--text);
+  font-family: var(--font-m); font-size: 0.77rem;
+  padding: 3px 10px; border-radius: 4px; border: 1px solid var(--border);
+}
+
+/* ── CONTACT ── */
+.contact-wrapper {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 14px; padding: 56px 48px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.contact-wrapper h3 { font-family: var(--font-h); font-size: 1.6rem; font-weight: 700; margin-bottom: 14px; }
+.contact-wrapper p { color: var(--muted); max-width: 460px; margin-bottom: 36px; line-height: 1.85; font-size: 0.95rem; }
+.contact-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.contact-link {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--text); text-decoration: none; padding: 13px 24px;
+  border-radius: 8px; font-size: 0.88rem; font-weight: 500;
+  transition: all .2s;
+}
+.contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.contact-link svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 28px;
+  border-top: 1px solid var(--border);
+  color: var(--muted); font-family: var(--font-m); font-size: 0.75rem;
+}
+footer span { color: var(--accent); }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  #hero { flex-direction: column; padding-top: 80px; gap: 40px; justify-content: center; }
+  .hero-right { flex: none; width: 100%; }
+  .about-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 5%; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.7rem; }
+  section { padding: 70px 5%; }
+  .contact-wrapper { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <span class="nav-logo">&lt;PK /&gt;</span>
+  <ul class="nav-links">
+    <li><a href="#about" data-section="about">About</a></li>
+    <li><a href="#experience" data-section="experience">Experience</a></li>
+    <li><a href="#projects" data-section="projects">Projects</a></li>
+    <li><a href="#skills" data-section="skills">Skills</a></li>
+    <li><a href="#contact" data-section="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative; overflow:hidden;">
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Data Scientist &amp; AI Engineer</p>
+    <h1 class="hero-name">Praveen Kumar<br>Ponnugupati</h1>
+    <p class="hero-title">
+      Building <span class="typed-wrap" id="typed"></span>
+    </p>
+    <p class="hero-desc">
+      Data Scientist and AI Engineer building intelligent systems end-to-end —
+      from local LLM agents with long-term memory to production ML pipelines
+      that turn raw data into decisions people act on.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="terminal-title">praveen@portfolio ~ bash</span>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+      </div>
+    </div>
+  </div>
+</section>
+<div class="scroll-cue">
+  <span>scroll</span>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">01 // about</p>
+  <h2 class="section-title reveal">About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="reveal">
+        I started out studying aerospace — spending three years obsessing over how aircraft wings fail,
+        how drag coefficients behave at high Reynolds numbers, and why ancient temple domes are
+        aerodynamically better than most modern buildings. That kind of engineering trains you to think
+        about systems under pressure: where they break, and why.
+      </p>
+      <p class="reveal reveal-delay-1">
+        When I graduated in 2021, aerospace hiring in India had collapsed. Instead of waiting, I took
+        a role at <span class="hi">Cognizant</span> building production systems for Travelers Insurance.
+        Turns out the instincts transferred perfectly — production engineering is just a different kind
+        of systems thinking. I spent 3.5 years managing Red Hat infrastructure at scale, automating
+        with Terraform and Python, shipping CI/CD pipelines, and learning what it actually takes to
+        keep software running reliably for a major insurer. Most data scientists never get that exposure.
+        I think in production, not just notebooks.
+      </p>
+      <p class="reveal reveal-delay-2">
+        Now I'm at <span class="hi">UConn</span> doing an MS in AI &amp; Machine Learning — and building
+        the things I couldn't stop thinking about while managing servers. A local chess coaching agent
+        that runs entirely on-device and remembers your playing patterns across sessions. A macOS daemon
+        that silently tracks your real typing mistakes and trains you to stop repeating them.
+        The through-line from aerospace to Cognizant to here is the same: I want to understand
+        how complex systems behave — and build tools that make them work better.
+      </p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-number">3.5+</div>
+        <div class="stat-label">Years Industry</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-number">93%</div>
+        <div class="stat-label">Best Accuracy</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-number">8%</div>
+        <div class="stat-label">Incidents Cut</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-4">
+        <div class="stat-number">$2K</div>
+        <div class="stat-label">Merit Scholarship</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE & EDUCATION -->
+<section id="experience" class="alt-bg">
+<div class="inner">
+  <p class="section-label reveal">02 // experience &amp; education</p>
+  <h2 class="section-title reveal">Where I've Worked &amp; Studied</h2>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-dot work"></div>
+      <div class="tl-date">DEC 2025 — PRESENT</div>
+      <div class="tl-role">Data Scientist</div>
+      <div class="tl-company work-co">Information Technology Services, UConn · Storrs, CT</div>
+      <div class="tl-summary">Build end-to-end data pipelines to help UConn make better decisions about student data.</div>
+      <ul class="tl-bullets">
+        <li>Analyzed student performance data to identify behavioral patterns that reliably predict academic risk, translating findings into actionable decision signals.</li>
+        <li>Built automated pipelines (Azure Data Factory) to standardize incoming student records and keep advisors working from trustworthy data.</li>
+        <li>Developed Power BI dashboards and training materials for faculty to interpret student risk signals and act on them directly.</li>
+        <li>Tested multiple predictive models, selecting one that handles class imbalance, limited data, and remains explainable enough for advisors.</li>
+      </ul>
+      <div class="tl-stack">
+        <span>Python</span><span>Azure Databricks</span><span>Azure Data Factory</span><span>Power BI</span><span>SQL</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot work"></div>
+      <div class="tl-date">JAN 2022 — JUL 2025</div>
+      <div class="tl-role">Technical Lead</div>
+      <div class="tl-company work-co">Cognizant Technology Solutions (Travelers Insurance) · Chennai, India</div>
+      <div class="tl-summary">Managed production systems on Red Hat and AWS, automated infrastructure with Terraform and Python.</div>
+      <ul class="tl-bullets">
+        <li>Kept production systems running for Travelers' insurance applications — incident management, server patching, outage prevention.</li>
+        <li>Used system logs, performance metrics, and incident reports to predict service outages via statistical models and data visualization.</li>
+        <li>Cut production incidents by ~8% through root cause analysis and Puppet-based preventive automation.</li>
+        <li>Implemented Git/GitLab CI/CD pipelines that automated testing and reduced manual release errors.</li>
+        <li>Automated server provisioning with Terraform and Python — environments in minutes instead of hours.</li>
+      </ul>
+      <div class="tl-stack">
+        <span>Python</span><span>AWS</span><span>Terraform</span><span>Red Hat</span><span>GitLab CI/CD</span><span>Puppet</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot edu"></div>
+      <div class="tl-date">AUG 2025 — MAY 2027</div>
+      <div class="tl-role">M.S. Business Analytics &amp; Project Management</div>
+      <div class="tl-company edu-co">University of Connecticut · Hartford, CT</div>
+      <div class="tl-summary">Concentration: Artificial Intelligence &amp; Machine Learning</div>
+      <ul class="tl-bullets">
+        <li>Coursework: AI, Predictive Modeling, Deep Learning, DBMS/SQL, Data Mining, Time Series Forecasting, Project Management.</li>
+        <li>$2,000 Kaplan International merit scholarship recipient.</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot edu"></div>
+      <div class="tl-date">2018 — 2021</div>
+      <div class="tl-role">B.Tech, Aerospace Engineering</div>
+      <div class="tl-company edu-co">Bharath Institute of Higher Education and Research · Chennai, India</div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">03 // projects</p>
+  <h2 class="section-title reveal">Things I've Built</h2>
+  <div class="projects-grid">
+
+    <!-- Chess Coach — headline project -->
+    <div class="project-card reveal">
+      <div class="project-top">
+        <span class="project-icon">♟️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/grandmaster-chess-coach" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">Grandmaster Chess Coach</div>
+      <div class="project-desc">Local-first AI coaching agent for chess.com games — Stockfish engine analysis, long-term memory across sessions, opponent scouting, and a conversational coach that runs entirely on-device.</div>
+      <ul class="project-highlights">
+        <li>Agentic CLI: Stockfish + Ollama (Qwen 2.5 7B) + Supermemory Local</li>
+        <li>Session continuity — coach remembers your mistakes across restarts</li>
+        <li>Opponent scouting via public chess.com archive analysis</li>
+        <li>Phase-level blunder breakdown: opening / middlegame / endgame ACPL</li>
+      </ul>
+      <div class="project-tags">
+        <span>Python</span><span>Stockfish</span><span>Ollama</span><span>Supermemory</span><span>Agent</span><span>chess.com API</span>
+      </div>
+    </div>
+
+    <!-- definately -->
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-top">
+        <span class="project-icon">✏️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/definately" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">definately — Typo Memory Coach</div>
+      <div class="project-desc">macOS daemon that intercepts keystrokes before autocorrect, stores your typos in local memory, and texts you a nightly digest of your own mistakes. Fully local — nothing leaves your Mac.</div>
+      <ul class="project-highlights">
+        <li>Catches errors autocorrect hides — sees what you actually typed</li>
+        <li>Long-term memory via Supermemory Local + Ollama digest generation</li>
+        <li>Tracks streaks: graduated words, relapses, and worst offenders</li>
+        <li>Delivers via iMessage — instant alerts or batched nightly digest</li>
+      </ul>
+      <div class="project-tags">
+        <span>Python</span><span>Ollama</span><span>Supermemory</span><span>macOS</span><span>iMessage</span><span>NSSpellChecker</span>
+      </div>
+    </div>
+
+    <!-- Student Exam -->
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-top">
+        <span class="project-icon">🎓</span>
+        <a href="https://github.com/praveenkumar-ponnugupati" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">Student Exam Performance Prediction</div>
+      <div class="project-desc">ML system to identify at-risk students early, enabling timely advisor intervention before failure becomes inevitable.</div>
+      <ul class="project-highlights">
+        <li>93% accuracy · 96% recall on failure prediction</li>
+        <li>Handled 75/25 class imbalance with rebalancing + threshold tuning</li>
+        <li>5 behavioral clusters revealing pre-failure attendance & assignment patterns</li>
+      </ul>
+      <div class="project-tags">
+        <span>Python</span><span>scikit-learn</span><span>SMOTE</span><span>K-Means</span><span>pandas</span>
+      </div>
+    </div>
+
+    <!-- UFC -->
+    <div class="project-card reveal reveal-delay-3">
+      <div class="project-top">
+        <span class="project-icon">🥊</span>
+        <a href="https://github.com/praveenkumar-ponnugupati" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">UFC Fight Outcome Prediction</div>
+      <div class="project-desc">ML models trained on 8,400+ bouts and 130+ fighter features to predict fight outcomes — matching expert analyst benchmarks.</div>
+      <ul class="project-highlights">
+        <li>70% accuracy, on par with expert analyst benchmarks</li>
+        <li>Caught and fixed data leakage from post-fight statistics</li>
+        <li>Analyzed 30% error rate to define the limits of ML vs. human judgment</li>
+      </ul>
+      <div class="project-tags">
+        <span>Python</span><span>XGBoost</span><span>Feature Eng.</span><span>EDA</span><span>matplotlib</span>
+      </div>
+    </div>
+
+    <!-- LLM Pipeline -->
+    <div class="project-card reveal">
+      <div class="project-top">
+        <span class="project-icon">🤖</span>
+        <a href="https://github.com/praveenkumar-ponnugupati" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">LLM-Powered Data Cleaning Pipeline</div>
+      <div class="project-desc">Integrated Kimi K2.7 via HuggingFace Inference API for intelligent, context-aware data cleaning on a startup success dataset.</div>
+      <ul class="project-highlights">
+        <li>923 startup records × 49 features sourced from Kaggle</li>
+        <li>LLM fixes typos, standardizes formats, removes noise contextually</li>
+        <li>Predicting startup acquisition vs. closure using cleaned features</li>
+      </ul>
+      <div class="project-tags">
+        <span>Python</span><span>HuggingFace</span><span>Kimi K2.7</span><span>LLM</span><span>pandas</span>
+      </div>
+    </div>
+
+    <!-- UConn Risk Pipeline -->
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-top">
+        <span class="project-icon">📊</span>
+        <a href="https://github.com/praveenkumar-ponnugupati" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">UConn Student Risk Pipeline</div>
+      <div class="project-desc">Production data pipeline at UConn ITS — continuously ingests student records, scores academic risk, and surfaces signals to advisors via Power BI.</div>
+      <ul class="project-highlights">
+        <li>Automated end-to-end with Azure Data Factory</li>
+        <li>Model selected for imbalance handling and explainability</li>
+        <li>Dashboards + training materials deployed to faculty and staff</li>
+      </ul>
+      <div class="project-tags">
+        <span>Azure Databricks</span><span>ADF</span><span>Power BI</span><span>Python</span><span>SQL</span>
+      </div>
+    </div>
+
+    <!-- Cargo Aircraft Design -->
+    <div class="project-card reveal">
+      <div class="project-top">
+        <span class="project-icon">✈️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/cargo-aircraft-design" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">80-Ton Cargo Aircraft Design</div>
+      <div class="project-desc">Full conceptual design of an 80-ton payload cargo aircraft — from airfoil selection and engine sizing to CG verification and structural stability. Every parameter computed iteratively using Java Foil, CATIA V5, ANSYS, and Python automation.</div>
+      <ul class="project-highlights">
+        <li>NACA 63A-910 airfoil selected via Java Foil lift-to-drag analysis</li>
+        <li>4× Pratt &amp; Whitney engines (760 kN total); CG at 47% of 67m fuselage</li>
+        <li>Python automation cut computational iteration time by 50%</li>
+      </ul>
+      <div class="project-tags">
+        <span>CATIA V5</span><span>ANSYS</span><span>Python</span><span>Java Foil</span><span>Aerospace</span>
+      </div>
+    </div>
+
+    <!-- Bluff Body Aerodynamics -->
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-top">
+        <span class="project-icon">🌬️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/bluff-body-aerodynamics" target="_blank" class="project-link">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <div class="project-name">CFD Analysis: Ancient vs Modern Structures</div>
+      <div class="project-desc">Research project testing whether ancient architectural forms are aerodynamically superior to modern ones. Used ANSYS Fluent CFD simulation and physical wind tunnel testing — then validated the hypothesis with data.</div>
+      <ul class="project-highlights">
+        <li>Ancient structures showed consistently lower drag coefficients</li>
+        <li>CFD predictions validated against physical wind tunnel measurements</li>
+        <li>Python pipeline: simulation → extraction → predictive analysis → conclusion</li>
+      </ul>
+      <div class="project-tags">
+        <span>ANSYS Fluent</span><span>Python</span><span>CFD</span><span>Wind Tunnel</span><span>Research</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="alt-bg">
+<div class="inner">
+  <p class="section-label reveal">04 // skills</p>
+  <h2 class="section-title reveal">Tech Stack</h2>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-tags"><span>Python</span><span>SQL</span></div>
+    </div>
+    <div class="skill-group reveal reveal-delay-1">
+      <div class="skill-group-title">ML / Data Science</div>
+      <div class="skill-tags"><span>scikit-learn</span><span>XGBoost</span><span>pandas</span><span>NumPy</span><span>matplotlib</span><span>seaborn</span></div>
+    </div>
+    <div class="skill-group reveal reveal-delay-2">
+      <div class="skill-group-title">Agentic AI</div>
+      <div class="skill-tags"><span>Ollama</span><span>Supermemory</span><span>LLM Agents</span><span>RAG</span><span>Tool Use</span><span>Local LLM</span></div>
+    </div>
+    <div class="skill-group reveal reveal-delay-3">
+      <div class="skill-group-title">Deep Learning / LLM</div>
+      <div class="skill-tags"><span>PyTorch</span><span>HuggingFace</span><span>Qwen 2.5</span><span>RNN</span></div>
+    </div>
+    <div class="skill-group reveal reveal-delay-3">
+      <div class="skill-group-title">Data Platforms</div>
+      <div class="skill-tags"><span>Azure Databricks</span><span>Azure Data Factory</span><span>Snowflake</span><span>Power BI</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Cloud & Infrastructure</div>
+      <div class="skill-tags"><span>AWS</span><span>Azure</span><span>Red Hat</span><span>Ubuntu</span><span>VMware vSphere</span></div>
+    </div>
+    <div class="skill-group reveal reveal-delay-1">
+      <div class="skill-group-title">DevOps</div>
+      <div class="skill-tags"><span>Terraform</span><span>Git / GitLab</span><span>CI/CD</span><span>Puppet</span><span>Red Hat Satellite</span></div>
+    </div>
+    <div class="skill-group reveal reveal-delay-2">
+      <div class="skill-group-title">Certifications</div>
+      <div class="skill-tags"><span>RHCSA</span></div>
+    </div>
+    <div class="skill-group reveal reveal-delay-3">
+      <div class="skill-group-title">ITSM & Collab</div>
+      <div class="skill-tags"><span>ServiceNow</span><span>Confluence</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal">05 // contact</p>
+  <h2 class="section-title reveal">Get In Touch</h2>
+  <div class="contact-wrapper reveal">
+    <h3>Let's Work Together</h3>
+    <p>I'm actively looking for Data Scientist and ML Engineer roles. Whether you have an opportunity, a question, or just want to talk data — my inbox is open.</p>
+    <div class="contact-links">
+      <a href="mailto:qyj25002@uconn.edu" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        qyj25002@uconn.edu
+      </a>
+      <a href="https://linkedin.com/in/praveen-kumar-ponnugupati" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/praveenkumar-ponnugupati" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Designed &amp; built by <span>Praveen Kumar Ponnugupati</span> · 2026
+</footer>
+
+<script>
+// ── TYPED HERO SUBTITLE ──
+const phrases = [
+  "AI agents that remember.",
+  "models that explain themselves.",
+  "data into decisions.",
+  "intelligent systems end-to-end."
+];
+let pi = 0, ci = 0, deleting = false, pause = 0;
+const el = document.getElementById('typed');
+function type() {
+  const word = phrases[pi];
+  if (pause > 0) { pause--; setTimeout(type, 80); return; }
+  if (!deleting) {
+    el.textContent = word.slice(0, ci + 1);
+    ci++;
+    if (ci === word.length) { deleting = true; pause = 18; }
+    setTimeout(type, 80);
+  } else {
+    el.textContent = word.slice(0, ci - 1);
+    ci--;
+    if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; pause = 4; }
+    setTimeout(type, 45);
+  }
+}
+setTimeout(type, 800);
+
+// ── TERMINAL ANIMATION ──
+const lines = [
+  { type: 'prompt', text: 'python predict.py --model student_risk' },
+  { type: 'out',    text: '» Loading dataset... [2847 records]' },
+  { type: 'out',    text: '» Applying SMOTE balancing...' },
+  { type: 'out',    text: '' },
+  { type: 'kv',     key: '  accuracy ', val: '0.93' },
+  { type: 'kv',     key: '  recall   ', val: '0.96' },
+  { type: 'kv',     key: '  f1-score ', val: '0.94' },
+  { type: 'out',    text: '' },
+  { type: 'out',    text: '» 5 behavioral clusters identified' },
+  { type: 'out',    text: '» Model saved → models/student_v2.pkl' },
+  { type: 'prompt', text: '█' },
+];
+const tb = document.getElementById('terminal-body');
+let li = 0;
+function renderLine(l) {
+  const span = document.createElement('span');
+  span.className = 't-line';
+  if (l.type === 'prompt') {
+    span.innerHTML = l.text === '█'
+      ? `<span class="t-prompt">❯ </span><span class="t-cursor"></span>`
+      : `<span class="t-prompt">❯ </span><span class="t-cmd">${l.text}</span>`;
+  } else if (l.type === 'kv') {
+    span.innerHTML = `<span class="t-out"><span class="t-key">${l.key}</span><span style="color:#555d68">= </span><span class="t-val">${l.val}</span></span>`;
+  } else {
+    span.innerHTML = `<span class="t-out">${l.text}</span>`;
+  }
+  tb.appendChild(span);
+}
+function animateTerminal() {
+  if (li < lines.length) {
+    renderLine(lines[li]);
+    li++;
+    setTimeout(animateTerminal, li === 1 ? 400 : lines[li-1].type === 'out' && lines[li-1].text === '' ? 80 : 220);
+  }
+}
+setTimeout(animateTerminal, 600);
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── SCROLL SPY NAV ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const spy = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[data-section="${e.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => spy.observe(s));
+</script>
+</body>
+</html>
