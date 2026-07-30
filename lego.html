@@ -165,13 +165,13 @@ section { max-width: 1120px; margin: 0 auto; padding: 84px 5%; }
 .hero-right { flex: 1; display: flex; flex-direction: column; align-items: center; }
 .chart-title {
   font-family: var(--font-m); font-size: 0.78rem; color: var(--muted);
-  margin-bottom: 18px; letter-spacing: 1px;
+  margin-bottom: 34px; letter-spacing: 1px;
 }
 .brick-chart {
   display: flex; align-items: flex-end; gap: 26px; height: 300px;
   padding: 0 10px;
 }
-.stack { display: flex; flex-direction: column-reverse; align-items: center; }
+.stack { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
 .stack .bricks { display: flex; flex-direction: column-reverse; }
 .chart-brick {
   width: 64px; height: 30px; border-radius: 5px; position: relative;
@@ -204,7 +204,7 @@ section { max-width: 1120px; margin: 0 auto; padding: 84px 5%; }
 .stack-label.show { opacity: 1; }
 .stack-base {
   width: 84px; height: 12px; background: #d8d4c8; border-radius: 3px;
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.12); order: -1; margin-top: 6px;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.12); margin-top: 4px;
 }
 
 /* ═══════════ ABOUT ═══════════ */
@@ -379,26 +379,20 @@ footer .brick-dot {
     <div class="chart-title">// my numbers, built brick by brick</div>
     <div class="brick-chart" id="brick-chart">
       <div class="stack">
-        <div class="stack-base"></div>
         <div class="bricks" data-count="5" data-color="cb-red"></div>
+        <div class="stack-base"></div>
         <div class="stack-value">3.5+</div>
         <div class="stack-label">years<br>industry</div>
       </div>
       <div class="stack">
+        <div class="bricks" data-count="7" data-color="cb-yellow"></div>
         <div class="stack-base"></div>
-        <div class="bricks" data-count="8" data-color="cb-yellow"></div>
         <div class="stack-value">93%</div>
         <div class="stack-label">best<br>accuracy</div>
       </div>
       <div class="stack">
+        <div class="bricks" data-count="4" data-color="cb-green"></div>
         <div class="stack-base"></div>
-        <div class="bricks" data-count="3" data-color="cb-blue"></div>
-        <div class="stack-value">8%</div>
-        <div class="stack-label">incidents<br>cut</div>
-      </div>
-      <div class="stack">
-        <div class="stack-base"></div>
-        <div class="bricks" data-count="6" data-color="cb-green"></div>
         <div class="stack-value">$2K</div>
         <div class="stack-label">merit<br>scholarship</div>
       </div>
