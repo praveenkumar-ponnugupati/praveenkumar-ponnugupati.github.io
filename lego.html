@@ -110,7 +110,17 @@ section { max-width: 1120px; margin: 0 auto; padding: 84px 5%; }
   position: relative; padding: 10px 22px 12px; border-radius: 6px;
   font-family: var(--font-h); font-weight: 800; font-size: 1.5rem; color: #fff;
   box-shadow: inset 0 -5px 0 rgba(0,0,0,0.22), 0 4px 0 rgba(0,0,0,0.12);
+  cursor: pointer; user-select: none;
+  transition: transform 0.1s var(--snap), box-shadow 0.1s;
 }
+.sec-plate:hover { transform: translateY(-3px); box-shadow: inset 0 -5px 0 rgba(0,0,0,0.22), 0 7px 0 rgba(0,0,0,0.12); }
+.sec-plate:active { transform: translateY(2px); box-shadow: inset 0 -3px 0 rgba(0,0,0,0.22), 0 1px 0 rgba(0,0,0,0.15); }
+.sec-plate::after {
+  content: '⌄ next'; position: absolute; right: -74px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-m); font-size: 0.62rem; font-weight: 600; color: var(--muted);
+  opacity: 0; transition: opacity 0.15s; pointer-events: none; letter-spacing: 1px;
+}
+.sec-plate:hover::after { opacity: 1; }
 .sec-plate.red { background: var(--red); }
 .sec-plate.blue { background: var(--blue); }
 .sec-plate.green { background: var(--green); }
@@ -773,6 +783,22 @@ function updateSpy() {
 }
 window.addEventListener('scroll', updateSpy, { passive: true });
 updateSpy();
+
+// ── SECTION PLATES: press to jump to next section ──
+const sectionOrder = ['about', 'experience', 'projects', 'skills', 'contact'];
+document.querySelectorAll('.sec-plate').forEach(plate => {
+  plate.setAttribute('role', 'button');
+  plate.setAttribute('tabindex', '0');
+  plate.title = 'Go to next section';
+  function go() {
+    const currentId = plate.closest('section').id;
+    const idx = sectionOrder.indexOf(currentId);
+    const nextId = idx === sectionOrder.length - 1 ? 'hero' : sectionOrder[idx + 1];
+    document.getElementById(nextId).scrollIntoView({ behavior: 'smooth' });
+  }
+  plate.addEventListener('click', go);
+  plate.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+});
 </script>
 </body>
 </html>
