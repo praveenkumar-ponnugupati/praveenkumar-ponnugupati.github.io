@@ -4,333 +4,338 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Praveen Kumar Ponnugupati | Data Scientist &amp; AI Engineer</title>
-<meta name="description" content="Data Scientist & AI Engineer — building AI agents with long-term memory and production ML pipelines. MS in AI/ML at UConn, 3.5 years production engineering at Cognizant.">
+<meta name="description" content="Data Scientist & AI Engineer building AI agents with long-term memory and production ML pipelines. MS in AI/ML at UConn, 3.5 years production engineering at Cognizant.">
 <meta property="og:title" content="Praveen Kumar Ponnugupati | Data Scientist & AI Engineer">
-<meta property="og:description" content="Building AI agents that remember and ML pipelines that turn data into decisions. View my projects — from local LLM agents to production risk models.">
+<meta property="og:description" content="A portfolio built brick by brick. AI agents, ML pipelines, and production systems.">
 <meta property="og:url" content="https://praveenkumar-ponnugupati.github.io">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Praveen Kumar Ponnugupati | Data Scientist & AI Engineer">
-<meta name="twitter:description" content="Building AI agents that remember and ML pipelines that turn data into decisions.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='bold' fill='%2364ffda' text-anchor='middle'%3EPK%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23D6001C'/%3E%3Ccircle cx='10' cy='8' r='3' fill='%23ff4d5e'/%3E%3Ccircle cx='22' cy='8' r='3' fill='%23ff4d5e'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='11' font-weight='900' fill='white' text-anchor='middle'%3EPK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ── */
+/* ═══════════ LEGO TOKENS ═══════════ */
 :root {
-  --bg:      #0d1117;
-  --bg2:     #161b22;
-  --bg3:     #1c2130;
-  --border:  #30363d;
-  --accent:  #64ffda;
-  --blue:    #58a6ff;
-  --muted:   #8b949e;
-  --text:    #e6edf3;
-  --font-h:  'Space Grotesk', sans-serif;
-  --font-b:  'Inter', sans-serif;
-  --font-m:  'JetBrains Mono', monospace;
+  --red:    #D6001C;
+  --red-d:  #A80016;
+  --yellow: #FFCF00;
+  --yellow-d:#E0B000;
+  --blue:   #0057A8;
+  --blue-d: #003F7A;
+  --green:  #00852B;
+  --green-d:#00611F;
+  --orange: #F57D20;
+  --ink:    #1d1d1f;
+  --paper:  #F7F5F0;
+  --card:   #ffffff;
+  --muted:  #5f6368;
+  --line:   #e3e0d8;
+  --font-h: 'Baloo 2', cursive;
+  --font-b: 'Inter', sans-serif;
+  --font-m: 'JetBrains Mono', monospace;
+  --snap: cubic-bezier(0.22, 1.4, 0.36, 1);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--font-b); line-height: 1.6; overflow-x: hidden; }
-
-/* ── SCROLL ANIMATIONS ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+body {
+  background: var(--paper);
+  /* baseplate stud pattern */
+  background-image: radial-gradient(circle at 12px 12px, rgba(0,0,0,0.045) 5px, transparent 6px);
+  background-size: 48px 48px;
+  color: var(--ink);
+  font-family: var(--font-b);
+  line-height: 1.65;
+  overflow-x: hidden;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
 
-/* ── NAV ── */
+/* ═══════════ BRICK PRIMITIVES ═══════════ */
+.studs { display: flex; gap: 10px; position: absolute; top: -9px; left: 16px; }
+.studs span {
+  width: 22px; height: 14px; border-radius: 6px 6px 3px 3px;
+  background: inherit; display: block;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.18), inset 0 2px 0 rgba(255,255,255,0.25);
+}
+.stud-strip { position: relative; }
+
+/* snap-in reveal */
+.snap { opacity: 0; transform: translateY(-34px); }
+.snap.visible { animation: snapIn 0.55s var(--snap) forwards; }
+@keyframes snapIn {
+  0%   { opacity: 0; transform: translateY(-34px); }
+  75%  { opacity: 1; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.snap-d1.visible { animation-delay: 0.08s; }
+.snap-d2.visible { animation-delay: 0.16s; }
+.snap-d3.visible { animation-delay: 0.24s; }
+
+/* ═══════════ NAV ═══════════ */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(13,17,23,0.9); backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+  border-bottom: 3px solid var(--ink);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 6%; height: 60px;
+  padding: 0 5%; height: 62px;
 }
 .nav-logo {
-  font-family: var(--font-m); font-size: 0.95rem;
-  color: var(--accent); letter-spacing: 2px;
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-h); font-weight: 800; font-size: 1.15rem;
+  color: var(--ink); text-decoration: none;
 }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
+.logo-brick {
+  width: 34px; height: 26px; background: var(--red); border-radius: 4px;
+  position: relative; box-shadow: inset 0 -4px 0 rgba(0,0,0,0.22);
+}
+.logo-brick::before, .logo-brick::after {
+  content: ''; position: absolute; top: -6px; width: 11px; height: 8px;
+  border-radius: 3px 3px 2px 2px; background: var(--red);
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.logo-brick::before { left: 4px; } .logo-brick::after { right: 4px; }
+.nav-links { display: flex; gap: 10px; list-style: none; }
 .nav-links a {
-  color: var(--muted); text-decoration: none;
-  font-family: var(--font-m); font-size: 0.78rem;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  transition: color .2s; position: relative; padding-bottom: 2px;
+  display: block; padding: 7px 14px 8px;
+  font-family: var(--font-h); font-weight: 700; font-size: 0.85rem;
+  color: var(--ink); text-decoration: none; border-radius: 6px;
+  border: 2.5px solid transparent;
+  transition: transform 0.15s var(--snap), border-color 0.15s, background 0.15s;
 }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-  height: 1px; background: var(--accent); transform: scaleX(0);
-  transition: transform .2s; transform-origin: left;
-}
-.nav-links a.active { color: var(--accent); }
-.nav-links a.active::after { transform: scaleX(1); }
-.nav-links a:hover { color: var(--accent); }
-.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a:hover { transform: translateY(-3px); border-color: var(--ink); background: var(--yellow); }
+.nav-links a.active { background: var(--yellow); border-color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
 
-/* ── SECTIONS ── */
-section {
-  padding: 90px 6%;
-  max-width: 1140px;
-  margin: 0 auto;
+/* ═══════════ SECTIONS ═══════════ */
+section { max-width: 1120px; margin: 0 auto; padding: 68px 5%; scroll-margin-top: 58px; }
+.sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 34px; }
+.sec-plate {
+  position: relative; padding: 10px 22px 12px; border-radius: 6px;
+  font-family: var(--font-h); font-weight: 800; font-size: 1.5rem; color: #fff;
+  box-shadow: inset 0 -5px 0 rgba(0,0,0,0.22), 0 4px 0 rgba(0,0,0,0.12);
+  cursor: pointer; user-select: none;
+  transition: transform 0.1s var(--snap), box-shadow 0.1s;
 }
-section.alt-bg {
-  max-width: 100%;
-  background: var(--bg2);
-  padding: 90px 0;
+.sec-plate:hover { transform: translateY(-3px); box-shadow: inset 0 -5px 0 rgba(0,0,0,0.22), 0 7px 0 rgba(0,0,0,0.12); }
+.sec-plate:active { transform: translateY(2px); box-shadow: inset 0 -3px 0 rgba(0,0,0,0.22), 0 1px 0 rgba(0,0,0,0.15); }
+.sec-plate::after {
+  content: '⌄ next'; position: absolute; right: -74px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-m); font-size: 0.62rem; font-weight: 600; color: var(--muted);
+  opacity: 0; transition: opacity 0.15s; pointer-events: none; letter-spacing: 1px;
 }
-section.alt-bg .inner { max-width: 1140px; margin: 0 auto; padding: 0 6%; }
+.sec-plate:hover::after { opacity: 1; }
+.sec-plate.red { background: var(--red); }
+.sec-plate.blue { background: var(--blue); }
+.sec-plate.green { background: var(--green); }
+.sec-plate.orange { background: var(--orange); }
+.sec-plate.yellow { background: var(--yellow); color: var(--ink); }
 
-.section-label {
-  font-family: var(--font-m); font-size: 0.75rem;
-  color: var(--accent); letter-spacing: 3px;
-  text-transform: uppercase; margin-bottom: 6px;
-}
-.section-title {
-  font-family: var(--font-h); font-size: 2rem; font-weight: 700;
-  color: var(--text); margin-bottom: 52px;
-  padding-bottom: 14px; border-bottom: 1px solid var(--border);
-}
-
-/* ── HERO ── */
+/* ═══════════ HERO ═══════════ */
 #hero {
-  min-height: 86vh;
-  display: flex; align-items: center;
-  gap: 48px; padding-top: 60px;
-  max-width: 1140px; margin: 0 auto; padding-left: 6%; padding-right: 6%;
+  min-height: auto; display: flex; align-items: center; gap: 56px;
+  padding: 112px 5% 68px; max-width: 1120px;
 }
-.hero-left { flex: 1; min-width: 0; }
+.hero-left { flex: 1.15; }
 .hero-tag {
-  font-family: var(--font-m); color: var(--accent); font-size: 0.88rem;
-  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+  display: inline-block; background: var(--blue); color: #fff;
+  font-family: var(--font-h); font-weight: 700; font-size: 0.9rem;
+  padding: 5px 16px 6px; border-radius: 5px; margin-bottom: 18px;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.22);
 }
-.hero-tag::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
 .hero-name {
-  font-family: var(--font-h);
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
-  font-weight: 800; color: var(--text);
-  line-height: 1.1; margin-bottom: 14px;
+  font-family: var(--font-h); font-weight: 800;
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem); line-height: 1.04;
+  margin-bottom: 10px; letter-spacing: -1px;
 }
-.hero-title {
-  font-family: var(--font-h);
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  color: var(--muted); font-weight: 500; margin-bottom: 24px;
+.hero-name .block-word { display: inline-block; }
+.hero-sub {
+  font-family: var(--font-h); font-weight: 700; font-size: 1.35rem;
+  margin-bottom: 16px; color: var(--ink);
 }
-.hero-title .typed-wrap { color: var(--accent); }
-.hero-desc {
-  max-width: 480px; color: var(--muted);
-  font-size: 0.95rem; margin-bottom: 36px; line-height: 1.85;
-}
-.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn {
-  display: inline-block; padding: 12px 28px; border-radius: 6px;
-  font-family: var(--font-m); font-size: 0.82rem; font-weight: 500;
-  text-decoration: none; letter-spacing: 1px;
-  transition: all .2s; cursor: pointer; border: none;
-}
-.btn-primary {
-  background: transparent; color: var(--accent);
-  border: 1px solid var(--accent);
-}
-.btn-primary:hover { background: rgba(100,255,218,0.08); box-shadow: 0 0 20px rgba(100,255,218,0.15); }
-.btn-secondary {
-  background: transparent; color: var(--muted); border: 1px solid var(--border);
-}
-.btn-secondary:hover { color: var(--text); border-color: var(--muted); }
-
-/* Terminal */
-.hero-right { flex: 0 0 420px; }
-.terminal {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 12px; overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-}
-.terminal-bar {
-  background: var(--bg3); padding: 12px 16px;
-  display: flex; align-items: center; gap: 8px;
-  border-bottom: 1px solid var(--border);
-}
-.dot { width: 12px; height: 12px; border-radius: 50%; }
-.dot-r { background: #ff5f57; }
-.dot-y { background: #febc2e; }
-.dot-g { background: #28c840; }
-.terminal-title { font-family: var(--font-m); font-size: 0.75rem; color: var(--muted); margin-left: auto; margin-right: auto; }
-.terminal-body { padding: 20px; font-family: var(--font-m); font-size: 0.8rem; line-height: 1.9; min-height: 280px; }
-.t-line { display: block; }
-.t-prompt { color: var(--accent); }
-.t-cmd { color: var(--text); }
-.t-out { color: var(--muted); padding-left: 16px; }
-.t-key { color: var(--blue); }
-.t-val { color: #e3b341; }
-.t-comment { color: #555d68; }
-.t-cursor {
-  display: inline-block; width: 8px; height: 14px;
-  background: var(--accent); animation: blink 1s step-end infinite;
-  vertical-align: middle; margin-left: 2px;
+.hero-sub .typed-wrap { color: var(--red); }
+.cursor {
+  display: inline-block; width: 3px; height: 1.1em; background: var(--red);
+  animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 2px;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.hero-desc { color: var(--muted); font-size: 1rem; max-width: 480px; margin-bottom: 30px; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  position: relative; display: inline-block; padding: 12px 26px 14px;
+  font-family: var(--font-h); font-weight: 700; font-size: 1rem;
+  text-decoration: none; border-radius: 7px; color: #fff;
+  box-shadow: inset 0 -5px 0 rgba(0,0,0,0.25), 0 5px 0 rgba(0,0,0,0.18);
+  transition: transform 0.12s var(--snap), box-shadow 0.12s;
+}
+.btn:hover { transform: translateY(-4px); box-shadow: inset 0 -5px 0 rgba(0,0,0,0.25), 0 9px 0 rgba(0,0,0,0.15); }
+.btn:active { transform: translateY(1px); box-shadow: inset 0 -3px 0 rgba(0,0,0,0.25), 0 2px 0 rgba(0,0,0,0.2); }
+.btn-red { background: var(--red); }
+.btn-blue { background: var(--blue); }
+.btn-green { background: var(--green); }
 
-/* ── ABOUT ── */
-.about-grid { display: grid; grid-template-columns: 1fr 220px; gap: 56px; align-items: start; }
-.about-text p { color: var(--muted); margin-bottom: 16px; line-height: 1.9; font-size: 0.95rem; }
-.about-text p .hi { color: var(--accent); font-weight: 600; }
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.stat-card {
-  background: var(--bg3); border: 1px solid var(--border);
-  border-radius: 10px; padding: 18px 14px; text-align: center;
-  transition: border-color .2s;
+/* hero LEGO stat tiles */
+.hero-right { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.chart-title {
+  font-family: var(--font-m); font-size: 0.78rem; color: var(--muted);
+  margin-bottom: 20px; letter-spacing: 1px;
 }
-.stat-card:hover { border-color: var(--accent); }
-.stat-number { font-family: var(--font-h); font-size: 1.8rem; font-weight: 800; color: var(--accent); }
-.stat-label { font-family: var(--font-m); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.hero-stats { display: flex; flex-direction: column; gap: 16px; width: 220px; }
+.hero-stat-tile {
+  position: relative; border-radius: 10px; padding: 20px 16px 16px; text-align: center;
+  color: #fff; box-shadow: inset 0 -5px 0 rgba(0,0,0,0.22), 0 5px 0 rgba(0,0,0,0.15);
+  opacity: 0; transform: translateY(-28px);
+}
+.hero-stat-tile.drop { animation: statDrop 0.5s var(--snap) forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-stat-tile { opacity: 1; transform: none; }
+  .hero-stat-tile.drop { animation: none; }
+}
+@keyframes statDrop {
+  0% { opacity: 0; transform: translateY(-28px); }
+  70% { opacity: 1; transform: translateY(3px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.hero-stat-tile .studs { left: 50%; transform: translateX(-50%); }
+.hst-red { background: var(--red); }
+.hst-yellow { background: var(--yellow); color: var(--ink); }
+.hst-blue { background: var(--blue); }
+.hst-green { background: var(--green); }
+.hero-stat-num { font-family: var(--font-h); font-weight: 800; font-size: 1.7rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.hero-stat-label {
+  font-size: 0.75rem; font-family: var(--font-m); opacity: 0.9; margin-top: 4px;
+}
 
-/* ── TIMELINE ── */
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before {
-  content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px;
-  width: 2px; background: var(--border);
+/* ═══════════ ABOUT ═══════════ */
+.about-grid { display: grid; grid-template-columns: minmax(0, 820px); gap: 48px; align-items: start; }
+.about-card {
+  position: relative; background: var(--card); border: 3px solid var(--ink);
+  border-radius: 10px; padding: 30px 32px; box-shadow: 0 6px 0 rgba(0,0,0,0.14);
 }
-.tl-item { position: relative; margin-bottom: 48px; }
-.tl-dot {
-  position: absolute; left: -32px; top: 6px;
-  width: 12px; height: 12px; border-radius: 50%;
-  border: 2px solid var(--bg2);
-  box-shadow: 0 0 0 2px currentColor;
+.about-card p { color: #3c4043; margin-bottom: 14px; font-size: 0.96rem; }
+.about-card p:last-child { margin-bottom: 0; }
+.about-card .hi { font-weight: 700; color: var(--blue); }
+.fact-num { font-family: var(--font-h); font-weight: 800; font-size: 1.7rem; line-height: 1.1; }
+.fact-label { font-size: 0.72rem; font-family: var(--font-m); opacity: 0.9; }
+
+/* ═══════════ TIMELINE ═══════════ */
+.tl { display: flex; flex-direction: column; gap: 26px; }
+.tl-brick {
+  position: relative; background: var(--card); border: 3px solid var(--ink);
+  border-radius: 10px; padding: 26px 30px 24px;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.14);
+  border-left-width: 14px;
 }
-.tl-dot.work { color: var(--accent); background: var(--accent); }
-.tl-dot.edu  { color: var(--blue);  background: var(--blue); }
-.tl-date { font-family: var(--font-m); font-size: 0.72rem; color: var(--muted); letter-spacing: 1px; margin-bottom: 4px; }
-.tl-role { font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; color: var(--text); }
-.tl-company { font-size: 0.88rem; margin-bottom: 8px; }
-.tl-company.work-co { color: var(--accent); }
-.tl-company.edu-co  { color: var(--blue); }
-.tl-summary { font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; font-style: italic; }
-.tl-bullets { list-style: none; }
+.tl-brick.work { border-left-color: var(--red); }
+.tl-brick.edu { border-left-color: var(--blue); }
+.tl-date {
+  display: inline-block; font-family: var(--font-m); font-size: 0.72rem; font-weight: 600;
+  background: var(--ink); color: #fff; padding: 3px 10px; border-radius: 4px; margin-bottom: 8px;
+}
+.tl-role { font-family: var(--font-h); font-weight: 800; font-size: 1.25rem; }
+.tl-co { color: var(--muted); font-size: 0.9rem; margin-bottom: 10px; }
+.tl-bullets { list-style: none; margin-top: 8px; }
 .tl-bullets li {
-  color: var(--muted); font-size: 0.875rem; margin-bottom: 6px;
-  padding-left: 18px; position: relative; line-height: 1.65;
+  position: relative; padding-left: 24px; color: #3c4043; font-size: 0.92rem; margin-bottom: 7px;
 }
-.tl-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
-.tl-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.tl-stack span {
-  background: rgba(100,255,218,0.06); border: 1px solid rgba(100,255,218,0.18);
-  color: var(--accent); font-family: var(--font-m); font-size: 0.7rem;
-  padding: 2px 10px; border-radius: 20px;
+.tl-bullets li::before {
+  content: ''; position: absolute; left: 0; top: 7px; width: 12px; height: 8px;
+  border-radius: 3px 3px 1px 1px; background: var(--yellow);
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.18);
 }
-
-/* ── PROJECTS ── */
-.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.project-card {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 12px; padding: 28px; display: flex; flex-direction: column;
-  transition: transform .25s, border-color .25s, box-shadow .25s;
+.tl-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chip {
+  position: relative; padding: 8px 12px 6px; font-family: var(--font-m); font-size: 0.72rem;
+  font-weight: 600; background: #eceae2; border-radius: 5px; color: var(--ink);
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.1);
 }
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 12px 40px rgba(100,255,218,0.08);
-}
-.project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.project-icon { font-size: 1.6rem; }
-.project-link { color: var(--muted); transition: color .2s; }
-.project-link:hover { color: var(--accent); }
-.project-name { font-family: var(--font-h); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
-.project-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.75; margin-bottom: 16px; flex: 1; }
-.project-highlights { list-style: none; margin-bottom: 16px; }
-.project-highlights li {
-  color: var(--muted); font-size: 0.81rem; padding-left: 14px;
-  position: relative; margin-bottom: 5px; line-height: 1.55;
-}
-.project-highlights li::before { content: '→'; position: absolute; left: 0; color: var(--blue); }
-.project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.project-tags span {
-  background: rgba(88,166,255,0.07); border: 1px solid rgba(88,166,255,0.2);
-  color: var(--blue); font-family: var(--font-m); font-size: 0.7rem;
-  padding: 2px 10px; border-radius: 20px;
+.chip::before {
+  content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 12px; height: 7px; border-radius: 3px 3px 2px 2px; background: #eceae2;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
 }
 
-/* ── SKILLS ── */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-.skill-group {
-  background: var(--bg3); border: 1px solid var(--border);
-  border-radius: 10px; padding: 20px; transition: border-color .2s;
+/* ═══════════ PROJECTS ═══════════ */
+.proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 28px; }
+.proj-brick {
+  position: relative; background: var(--card); border: 3px solid var(--ink);
+  border-radius: 10px; padding: 30px 26px 24px; margin-top: 10px;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.14);
+  transition: transform 0.18s var(--snap), box-shadow 0.18s;
 }
-.skill-group:hover { border-color: rgba(100,255,218,0.3); }
-.skill-group-title {
-  font-family: var(--font-m); font-size: 0.7rem;
-  color: var(--accent); letter-spacing: 2px;
-  text-transform: uppercase; margin-bottom: 14px;
-  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+.proj-brick:hover { transform: translateY(-8px) rotate(-0.6deg); box-shadow: 0 16px 0 rgba(0,0,0,0.10); }
+.proj-brick .studs span { width: 26px; height: 15px; }
+.pb-red .studs span { background: var(--red); }
+.pb-yellow .studs span { background: var(--yellow); }
+.pb-blue .studs span { background: var(--blue); }
+.pb-green .studs span { background: var(--green); }
+.pb-orange .studs span { background: var(--orange); }
+.proj-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.proj-emoji { font-size: 1.7rem; }
+.gh-link { color: var(--ink); transition: transform 0.15s var(--snap), color 0.15s; }
+.gh-link:hover { color: var(--red); transform: translateY(-3px); }
+.proj-name { font-family: var(--font-h); font-weight: 800; font-size: 1.18rem; margin-bottom: 6px; }
+.proj-desc { color: #3c4043; font-size: 0.9rem; margin-bottom: 12px; }
+.proj-points { list-style: none; margin-bottom: 14px; }
+.proj-points li {
+  position: relative; padding-left: 22px; font-size: 0.85rem; color: #52565c; margin-bottom: 5px;
 }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-.skill-tags span {
-  background: var(--bg2); color: var(--text);
-  font-family: var(--font-m); font-size: 0.77rem;
-  padding: 3px 10px; border-radius: 4px; border: 1px solid var(--border);
+.proj-points li::before {
+  content: ''; position: absolute; left: 0; top: 6px; width: 11px; height: 7px;
+  border-radius: 3px 3px 1px 1px; background: var(--blue);
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
 }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 7px; }
 
-/* ── CONTACT ── */
-.contact-wrapper {
-  background: var(--bg2); border: 1px solid var(--border);
-  border-radius: 14px; padding: 56px 48px;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
+/* ═══════════ SKILLS ═══════════ */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 24px; align-items: start; }
+.skill-brick {
+  position: relative; background: var(--card); border: 3px solid var(--ink);
+  border-radius: 10px; padding: 26px 22px 20px; margin-top: 10px;
+  box-shadow: 0 5px 0 rgba(0,0,0,0.13);
 }
-.contact-wrapper h3 { font-family: var(--font-h); font-size: 1.6rem; font-weight: 700; margin-bottom: 14px; }
-.contact-wrapper p { color: var(--muted); max-width: 460px; margin-bottom: 36px; line-height: 1.85; font-size: 0.95rem; }
-.contact-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-.contact-link {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--bg3); border: 1px solid var(--border);
-  color: var(--text); text-decoration: none; padding: 13px 24px;
-  border-radius: 8px; font-size: 0.88rem; font-weight: 500;
-  transition: all .2s;
-}
-.contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-.contact-link svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+.skill-brick .studs span { width: 20px; height: 13px; }
+.sb-red .studs span { background: var(--red); } .sb-yellow .studs span { background: var(--yellow); }
+.sb-blue .studs span { background: var(--blue); } .sb-green .studs span { background: var(--green); }
+.sb-orange .studs span { background: var(--orange); }
+.skill-title { font-family: var(--font-h); font-weight: 800; font-size: 1rem; margin-bottom: 12px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
-/* ── FOOTER ── */
+/* ═══════════ CONTACT ═══════════ */
+.contact-brick {
+  position: relative; background: var(--yellow); border: 3px solid var(--ink);
+  border-radius: 12px; padding: 46px 40px 40px; text-align: center; margin-top: 12px;
+  box-shadow: inset 0 -8px 0 rgba(0,0,0,0.13), 0 8px 0 rgba(0,0,0,0.15);
+}
+.contact-brick .studs { left: 50%; transform: translateX(-50%); }
+.contact-brick .studs span { width: 30px; height: 16px; background: var(--yellow); }
+.contact-brick h3 { font-family: var(--font-h); font-weight: 800; font-size: 1.9rem; margin-bottom: 10px; }
+.contact-brick p { color: #4a4a45; max-width: 560px; margin: 0 auto 26px; font-size: 0.98rem; }
+.contact-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
 footer {
-  text-align: center; padding: 28px;
-  border-top: 1px solid var(--border);
-  color: var(--muted); font-family: var(--font-m); font-size: 0.75rem;
+  text-align: center; padding: 36px 5% 42px; color: var(--muted);
+  font-size: 0.85rem; border-top: 3px solid var(--ink); background: #fff;
 }
-footer span { color: var(--accent); }
+footer .brick-dot {
+  display: inline-block; width: 12px; height: 9px; border-radius: 3px 3px 2px 2px;
+  margin: 0 3px; vertical-align: middle; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+}
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--muted); }
-
-/* ── RESPONSIVE ── */
+/* ═══════════ RESPONSIVE ═══════════ */
 @media (max-width: 900px) {
-  #hero { flex-direction: column; padding-top: 80px; gap: 40px; justify-content: center; }
-  .hero-right { flex: none; width: 100%; }
-  .about-grid { grid-template-columns: 1fr; }
-  .projects-grid { grid-template-columns: 1fr; }
+  section { padding: 52px 5%; }
+  #hero { flex-direction: column; gap: 40px; padding: 100px 5% 52px; min-height: auto; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 600px) {
-  nav { padding: 0 5%; }
-  .nav-links { gap: 1rem; }
-  .nav-links a { font-size: 0.7rem; }
-  section { padding: 70px 5%; }
-  .contact-wrapper { padding: 36px 24px; }
+@media (max-width: 640px) {
+  .proj-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero-stats { width: 180px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="navbar">
-  <span class="nav-logo">&lt;PK /&gt;</span>
+<nav>
+  <a class="nav-logo" href="#hero"><span class="logo-brick"></span>Praveen Kumar</a>
   <ul class="nav-links">
     <li><a href="#about" data-section="about">About</a></li>
     <li><a href="#experience" data-section="experience">Experience</a></li>
@@ -341,62 +346,55 @@ footer span { color: var(--accent); }
 </nav>
 
 <!-- HERO -->
-<div style="position:relative; overflow:hidden;">
 <section id="hero">
   <div class="hero-left">
-    <p class="hero-tag">Data Scientist &amp; AI Engineer</p>
+    <span class="hero-tag">Data Scientist &amp; AI Engineer</span>
     <h1 class="hero-name">Praveen Kumar<br>Ponnugupati</h1>
-    <p class="hero-title">
-      Building <span class="typed-wrap" id="typed"></span>
-    </p>
+    <p class="hero-sub">Building <span class="typed-wrap" id="typed"></span><span class="cursor"></span></p>
     <p class="hero-desc">
-      Data Scientist and AI Engineer building intelligent systems end-to-end,
+      Data Scientist and AI Engineer assembling intelligent systems piece by piece,
       from local LLM agents with long-term memory to production ML pipelines
       that turn raw data into decisions people act on.
     </p>
     <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="resume.pdf" download="Praveen_Kumar_Ponnugupati_Resume.pdf" class="btn btn-secondary">Download Resume</a>
+      <a href="#projects" class="btn btn-red">View Projects</a>
+      <a href="resume.pdf" download="Praveen_Kumar_Ponnugupati_Resume.pdf" class="btn btn-blue">Download Resume</a>
     </div>
   </div>
-
   <div class="hero-right">
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="terminal-title">praveen@portfolio ~ bash</span>
-      </div>
-      <div class="terminal-body" id="terminal-body">
-      </div>
+    <div class="chart-title">quick stats</div>
+    <div class="hero-stats" id="hero-stats">
+      <div class="hero-stat-tile hst-red stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="3.5" data-dec="1" data-prefix="" data-suffix="+">0+</div><div class="hero-stat-label">years in production</div></div>
+      <div class="hero-stat-tile hst-blue stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="8" data-dec="0" data-prefix="" data-suffix="%">0%</div><div class="hero-stat-label">incidents cut</div></div>
+      <div class="hero-stat-tile hst-green stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="2" data-dec="0" data-prefix="$" data-suffix="K">$0K</div><div class="hero-stat-label">merit scholarship</div></div>
+      <div class="hero-stat-tile hst-yellow stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="8" data-dec="0" data-prefix="" data-suffix="">0</div><div class="hero-stat-label">projects shipped</div></div>
     </div>
   </div>
 </section>
-</div>
 
 <!-- ABOUT -->
 <section id="about">
-  <p class="section-label reveal">01 // about</p>
-  <h2 class="section-title reveal">About Me</h2>
+  <div class="sec-head snap">
+    <span class="sec-plate red stud-strip"><span class="studs"><span></span><span></span><span></span></span>About Me</span>
+  </div>
   <div class="about-grid">
-    <div class="about-text">
-      <p class="reveal">
+    <div class="about-card snap snap-d1">
+      <p>
         I started out studying aerospace, spending three years obsessing over how aircraft wings fail,
         how air flows around moving objects, and why ancient temple domes are aerodynamically better
         than most modern buildings. That kind of engineering teaches you to think about systems under
         pressure: where they break, and why.
       </p>
-      <p class="reveal reveal-delay-1">
-        I graduated in 2021 into a collapsed aerospace job market in India. Rather than wait it out,
-        I took a role at <span class="hi">Cognizant</span> building production systems for Travelers
+      <p>
+        I graduated in 2021 into a collapsed aerospace job market in India. Rather than wait it out, I
+        took a role at <span class="hi">Cognizant</span> building production systems for Travelers
         Insurance, and the instincts transferred immediately: production engineering is just systems
         thinking applied to software instead of steel. Over 3.5 years I managed Red Hat infrastructure
         at scale, automated with Terraform and Python, and shipped CI/CD pipelines, learning firsthand
         what it takes to keep software running reliably for a major insurer. Most data scientists never
         get that exposure. I think in production, not just notebooks.
       </p>
-      <p class="reveal reveal-delay-2">
+      <p>
         Now I'm at <span class="hi">UConn</span> earning an MS in AI &amp; Machine Learning, building
         the things I couldn't stop thinking about while managing servers: a chess coaching agent that
         runs entirely on-device and remembers your mistakes across sessions, and a macOS daemon that
@@ -405,400 +403,329 @@ footer span { color: var(--accent); }
         build the tools that make them work better.
       </p>
     </div>
-    <div class="stats-grid">
-      <div class="stat-card reveal reveal-delay-1">
-        <div class="stat-number">3.5+</div>
-        <div class="stat-label">Years Industry</div>
-      </div>
-      <div class="stat-card reveal reveal-delay-2">
-        <div class="stat-number">93%</div>
-        <div class="stat-label">Best Accuracy</div>
-      </div>
-      <div class="stat-card reveal reveal-delay-3">
-        <div class="stat-number">8%</div>
-        <div class="stat-label">Incidents Cut</div>
-      </div>
-      <div class="stat-card reveal reveal-delay-4">
-        <div class="stat-number">$2K</div>
-        <div class="stat-label">Merit Scholarship</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- EXPERIENCE & EDUCATION -->
-<section id="experience" class="alt-bg">
-<div class="inner">
-  <p class="section-label reveal">02 // experience &amp; education</p>
-  <h2 class="section-title reveal">Where I've Worked &amp; Studied</h2>
-  <div class="timeline">
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-head snap">
+    <span class="sec-plate blue stud-strip"><span class="studs"><span></span><span></span><span></span></span>Experience &amp; Education</span>
+  </div>
+  <div class="tl">
 
-    <div class="tl-item reveal">
-      <div class="tl-dot work"></div>
-      <div class="tl-date">DEC 2025 — PRESENT</div>
+    <div class="tl-brick work snap">
+      <span class="tl-date">DEC 2025 — PRESENT</span>
       <div class="tl-role">Data Scientist</div>
-      <div class="tl-company work-co">Information Technology Services, UConn · Storrs, CT</div>
-      <div class="tl-summary">Build end-to-end data pipelines to help UConn make better decisions about student data.</div>
+      <div class="tl-co">Information Technology Services, UConn · Storrs, CT</div>
       <ul class="tl-bullets">
         <li>Analyzed student performance data to identify behavioral patterns that reliably predict academic risk, translating findings into actionable decision signals.</li>
         <li>Built automated pipelines (Azure Data Factory) to standardize incoming student records and keep advisors working from trustworthy data.</li>
         <li>Developed Power BI dashboards and training materials for faculty to interpret student risk signals and act on them directly.</li>
         <li>Tested multiple predictive models, selecting one that handles class imbalance, limited data, and remains explainable enough for advisors.</li>
       </ul>
-      <div class="tl-stack">
-        <span>Python</span><span>Azure Databricks</span><span>Azure Data Factory</span><span>Power BI</span><span>SQL</span>
-      </div>
+      <div class="tl-stack"><span class="chip">Python</span><span class="chip">Azure Databricks</span><span class="chip">Azure Data Factory</span><span class="chip">Power BI</span><span class="chip">SQL</span></div>
     </div>
 
-    <div class="tl-item reveal">
-      <div class="tl-dot work"></div>
-      <div class="tl-date">JAN 2022 — JUL 2025</div>
+    <div class="tl-brick work snap">
+      <span class="tl-date">JAN 2022 — JUL 2025</span>
       <div class="tl-role">Technical Lead</div>
-      <div class="tl-company work-co">Cognizant Technology Solutions (Travelers Insurance) · Chennai, India</div>
-      <div class="tl-summary">Managed production systems on Red Hat and AWS, automated infrastructure with Terraform and Python.</div>
+      <div class="tl-co">Cognizant Technology Solutions (Travelers Insurance) · Chennai, India</div>
       <ul class="tl-bullets">
-        <li>Kept production systems running for Travelers' insurance applications — incident management, server patching, outage prevention.</li>
+        <li>Kept production systems running for Travelers' insurance applications: incident management, server patching, outage prevention.</li>
         <li>Used system logs, performance metrics, and incident reports to predict service outages via statistical models and data visualization.</li>
         <li>Cut production incidents by ~8% through root cause analysis and Puppet-based preventive automation.</li>
         <li>Implemented Git/GitLab CI/CD pipelines that automated testing and reduced manual release errors.</li>
-        <li>Automated server provisioning with Terraform and Python — environments in minutes instead of hours.</li>
+        <li>Automated server provisioning with Terraform and Python: environments in minutes instead of hours.</li>
       </ul>
-      <div class="tl-stack">
-        <span>Python</span><span>AWS</span><span>Terraform</span><span>Red Hat</span><span>GitLab CI/CD</span><span>Puppet</span>
-      </div>
+      <div class="tl-stack"><span class="chip">Python</span><span class="chip">AWS</span><span class="chip">Terraform</span><span class="chip">Red Hat</span><span class="chip">GitLab CI/CD</span><span class="chip">Puppet</span></div>
     </div>
 
-    <div class="tl-item reveal">
-      <div class="tl-dot edu"></div>
-      <div class="tl-date">AUG 2025 — MAY 2027</div>
+    <div class="tl-brick edu snap">
+      <span class="tl-date">AUG 2025 — MAY 2027</span>
       <div class="tl-role">M.S. Business Analytics &amp; Project Management</div>
-      <div class="tl-company edu-co">University of Connecticut · Hartford, CT</div>
-      <div class="tl-summary">Concentration: Artificial Intelligence &amp; Machine Learning</div>
+      <div class="tl-co">University of Connecticut · Hartford, CT</div>
       <ul class="tl-bullets">
+        <li>Concentration: Artificial Intelligence &amp; Machine Learning.</li>
         <li>Coursework: Artificial Intelligence, Predictive Modeling, Deep Learning, Data Mining.</li>
         <li>$2,000 Kaplan International merit scholarship recipient.</li>
       </ul>
     </div>
 
-    <div class="tl-item reveal">
-      <div class="tl-dot edu"></div>
-      <div class="tl-date">JUL 2018 — MAY 2021</div>
+    <div class="tl-brick edu snap">
+      <span class="tl-date">JUL 2018 — MAY 2021</span>
       <div class="tl-role">B.Tech, Aerospace Engineering</div>
-      <div class="tl-company edu-co">Bharath Institute of Higher Education and Research · Chennai, India</div>
+      <div class="tl-co">Bharath Institute of Higher Education and Research · Chennai, India</div>
     </div>
 
   </div>
-</div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <p class="section-label reveal">03 // projects</p>
-  <h2 class="section-title reveal">Things I've Built</h2>
-  <div class="projects-grid">
+  <div class="sec-head snap">
+    <span class="sec-plate green stud-strip"><span class="studs"><span></span><span></span><span></span></span>Things I've Built</span>
+  </div>
+  <div class="proj-grid">
 
-    <!-- Chess Coach — headline project -->
-    <div class="project-card reveal">
-      <div class="project-top">
-        <span class="project-icon">♟️</span>
-        <a href="https://github.com/praveenkumar-ponnugupati/grandmaster-chess-coach" target="_blank" class="project-link">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    <div class="proj-brick pb-red stud-strip snap">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">♟️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/grandmaster-chess-coach" target="_blank" class="gh-link" aria-label="GitHub repo">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
       </div>
-      <div class="project-name">Grandmaster Chess Coach</div>
-      <div class="project-desc">Local-first AI coaching agent for chess.com games — Stockfish engine analysis, long-term memory across sessions, opponent scouting, and a conversational coach that runs entirely on-device.</div>
-      <ul class="project-highlights">
+      <div class="proj-name">Grandmaster Chess Coach</div>
+      <div class="proj-desc">Local-first CLI AI coaching agent for chess.com games: Stockfish engine analysis, long-term memory across sessions, opponent scouting, all running entirely on-device.</div>
+      <ul class="proj-points">
         <li>Agentic CLI: Stockfish + Ollama (Qwen 2.5 7B) + Supermemory Local</li>
-        <li>Session continuity — coach remembers your mistakes across restarts</li>
+        <li>Session continuity: the coach remembers your mistakes across restarts</li>
         <li>Opponent scouting via public chess.com archive analysis</li>
-        <li>Phase-level blunder breakdown: opening / middlegame / endgame ACPL</li>
       </ul>
-      <div class="project-tags">
-        <span>Python</span><span>Stockfish</span><span>Ollama</span><span>Supermemory</span><span>Agent</span><span>chess.com API</span>
-      </div>
+      <div class="proj-tags"><span class="chip">Python</span><span class="chip">Stockfish</span><span class="chip">Ollama</span><span class="chip">Supermemory</span><span class="chip">Agent</span></div>
     </div>
 
-    <!-- definately -->
-    <div class="project-card reveal reveal-delay-1">
-      <div class="project-top">
-        <span class="project-icon">✏️</span>
-        <a href="https://github.com/praveenkumar-ponnugupati/definately" target="_blank" class="project-link">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    <div class="proj-brick pb-yellow stud-strip snap snap-d1">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">✏️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/definately" target="_blank" class="gh-link" aria-label="GitHub repo">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
       </div>
-      <div class="project-name">definately — Typo Memory Coach</div>
-      <div class="project-desc">macOS daemon that intercepts keystrokes before autocorrect, stores your typos in local memory, and texts you a nightly digest of your own mistakes. Fully local — nothing leaves your Mac.</div>
-      <ul class="project-highlights">
-        <li>Catches errors autocorrect hides — sees what you actually typed</li>
+      <div class="proj-name">definately — Typo Memory Coach</div>
+      <div class="proj-desc">macOS daemon that intercepts keystrokes before autocorrect, stores your typos in local memory, and texts you a nightly digest of your own mistakes. Fully local.</div>
+      <ul class="proj-points">
+        <li>Catches errors autocorrect hides: sees what you actually typed</li>
         <li>Long-term memory via Supermemory Local + Ollama digest generation</li>
-        <li>Tracks streaks: graduated words, relapses, and worst offenders</li>
-        <li>Delivers via iMessage — instant alerts or batched nightly digest</li>
+        <li>Delivers via iMessage: instant alerts or batched nightly digest</li>
       </ul>
-      <div class="project-tags">
-        <span>Python</span><span>Ollama</span><span>Supermemory</span><span>macOS</span><span>iMessage</span><span>NSSpellChecker</span>
-      </div>
+      <div class="proj-tags"><span class="chip">Python</span><span class="chip">Ollama</span><span class="chip">Supermemory</span><span class="chip">macOS</span><span class="chip">iMessage</span></div>
     </div>
 
-    <!-- Student Exam -->
-    <div class="project-card reveal reveal-delay-2">
-      <div class="project-top">
-        <span class="project-icon">🎓</span>
-      </div>
-      <div class="project-name">Student Exam Performance Prediction</div>
-      <div class="project-desc">ML system to identify at-risk students early, enabling timely advisor intervention before failure becomes inevitable.</div>
-      <ul class="project-highlights">
+    <div class="proj-brick pb-blue stud-strip snap">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">🎓</span></div>
+      <div class="proj-name">Student Exam Performance Prediction</div>
+      <div class="proj-desc">ML system to identify at-risk students early, enabling timely advisor intervention before failure becomes inevitable.</div>
+      <ul class="proj-points">
         <li>93% accuracy · 96% recall on failure prediction</li>
         <li>Handled 75/25 class imbalance with rebalancing + threshold tuning</li>
-        <li>5 behavioral clusters revealing pre-failure attendance & assignment patterns</li>
+        <li>5 behavioral clusters revealing pre-failure warning patterns</li>
       </ul>
-      <div class="project-tags">
-        <span>Python</span><span>scikit-learn</span><span>SMOTE</span><span>K-Means</span><span>pandas</span>
-      </div>
+      <div class="proj-tags"><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">SMOTE</span><span class="chip">K-Means</span><span class="chip">pandas</span></div>
     </div>
 
-    <!-- UFC -->
-    <div class="project-card reveal reveal-delay-3">
-      <div class="project-top">
-        <span class="project-icon">🥊</span>
-      </div>
-      <div class="project-name">UFC Fight Outcome Prediction</div>
-      <div class="project-desc">ML models trained on 8,400+ bouts and 130+ fighter features to predict fight outcomes — matching expert analyst benchmarks.</div>
-      <ul class="project-highlights">
+    <div class="proj-brick pb-green stud-strip snap snap-d1">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">🥊</span></div>
+      <div class="proj-name">UFC Fight Outcome Prediction</div>
+      <div class="proj-desc">ML models trained on 8,400+ bouts and 130+ fighter features to predict fight outcomes, matching expert analyst benchmarks.</div>
+      <ul class="proj-points">
         <li>70% accuracy, on par with expert analyst benchmarks</li>
         <li>Caught and fixed data leakage from post-fight statistics</li>
-        <li>Analyzed 30% error rate to define the limits of ML vs. human judgment</li>
+        <li>Analyzed the 30% error rate to map where ML ends and judgment begins</li>
       </ul>
-      <div class="project-tags">
-        <span>Python</span><span>XGBoost</span><span>Feature Eng.</span><span>EDA</span><span>matplotlib</span>
-      </div>
+      <div class="proj-tags"><span class="chip">Python</span><span class="chip">XGBoost</span><span class="chip">Feature Eng.</span><span class="chip">EDA</span></div>
     </div>
 
-    <!-- LLM Pipeline -->
-    <div class="project-card reveal">
-      <div class="project-top">
-        <span class="project-icon">🤖</span>
-      </div>
-      <div class="project-name">LLM-Powered Data Cleaning Pipeline</div>
-      <div class="project-desc">Integrated Kimi K2.7 via HuggingFace Inference API for intelligent, context-aware data cleaning on a startup success dataset.</div>
-      <ul class="project-highlights">
+    <div class="proj-brick pb-orange stud-strip snap">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">🤖</span></div>
+      <div class="proj-name">LLM-Powered Data Cleaning Pipeline</div>
+      <div class="proj-desc">Integrated Kimi K2.7 via HuggingFace Inference API for intelligent, context-aware data cleaning on a startup success dataset.</div>
+      <ul class="proj-points">
         <li>923 startup records × 49 features sourced from Kaggle</li>
         <li>LLM fixes typos, standardizes formats, removes noise contextually</li>
         <li>Predicting startup acquisition vs. closure using cleaned features</li>
       </ul>
-      <div class="project-tags">
-        <span>Python</span><span>HuggingFace</span><span>Kimi K2.7</span><span>LLM</span><span>pandas</span>
-      </div>
+      <div class="proj-tags"><span class="chip">Python</span><span class="chip">HuggingFace</span><span class="chip">LLM</span><span class="chip">pandas</span></div>
     </div>
 
-    <!-- UConn Risk Pipeline -->
-    <div class="project-card reveal reveal-delay-1">
-      <div class="project-top">
-        <span class="project-icon">📊</span>
-      </div>
-      <div class="project-name">UConn Student Risk Pipeline</div>
-      <div class="project-desc">Production data pipeline at UConn ITS — continuously ingests student records, scores academic risk, and surfaces signals to advisors via Power BI.</div>
-      <ul class="project-highlights">
+    <div class="proj-brick pb-blue stud-strip snap snap-d1">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">📊</span></div>
+      <div class="proj-name">UConn Student Risk Pipeline</div>
+      <div class="proj-desc">Production data pipeline at UConn ITS: continuously ingests student records, scores academic risk, and surfaces signals to advisors via Power BI.</div>
+      <ul class="proj-points">
         <li>Automated end-to-end with Azure Data Factory</li>
         <li>Model selected for imbalance handling and explainability</li>
         <li>Dashboards + training materials deployed to faculty and staff</li>
       </ul>
-      <div class="project-tags">
-        <span>Azure Databricks</span><span>ADF</span><span>Power BI</span><span>Python</span><span>SQL</span>
-      </div>
+      <div class="proj-tags"><span class="chip">Azure Databricks</span><span class="chip">ADF</span><span class="chip">Power BI</span><span class="chip">SQL</span></div>
     </div>
 
-    <!-- Cargo Aircraft Design -->
-    <div class="project-card reveal">
-      <div class="project-top">
-        <span class="project-icon">✈️</span>
-        <a href="https://github.com/praveenkumar-ponnugupati/cargo-aircraft-design" target="_blank" class="project-link">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    <div class="proj-brick pb-red stud-strip snap">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">✈️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/cargo-aircraft-design" target="_blank" class="gh-link" aria-label="GitHub repo">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
       </div>
-      <div class="project-name">80-Ton Cargo Aircraft Design</div>
-      <div class="project-desc">Full conceptual design of an 80-ton payload cargo aircraft — from airfoil selection and engine sizing to CG verification and structural stability. Every parameter computed iteratively using Java Foil, CATIA V5, ANSYS, and Python automation.</div>
-      <ul class="project-highlights">
+      <div class="proj-name">80-Ton Cargo Aircraft Design</div>
+      <div class="proj-desc">Full conceptual design of an 80-ton payload cargo aircraft, from airfoil selection and engine sizing to CG verification and structural stability.</div>
+      <ul class="proj-points">
         <li>NACA 63A-910 airfoil selected via Java Foil lift-to-drag analysis</li>
         <li>4× Pratt &amp; Whitney engines (760 kN total); CG at 47% of 67m fuselage</li>
         <li>Python automation cut computational iteration time by 50%</li>
       </ul>
-      <div class="project-tags">
-        <span>CATIA V5</span><span>ANSYS</span><span>Python</span><span>Java Foil</span><span>Aerospace</span>
-      </div>
+      <div class="proj-tags"><span class="chip">CATIA V5</span><span class="chip">ANSYS</span><span class="chip">Python</span><span class="chip">Aerospace</span></div>
     </div>
 
-    <!-- Bluff Body Aerodynamics -->
-    <div class="project-card reveal reveal-delay-1">
-      <div class="project-top">
-        <span class="project-icon">🌬️</span>
-        <a href="https://github.com/praveenkumar-ponnugupati/bluff-body-aerodynamics" target="_blank" class="project-link">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+    <div class="proj-brick pb-green stud-strip snap snap-d1">
+      <span class="studs"><span></span><span></span><span></span><span></span></span>
+      <div class="proj-top"><span class="proj-emoji">🌬️</span>
+        <a href="https://github.com/praveenkumar-ponnugupati/bluff-body-aerodynamics" target="_blank" class="gh-link" aria-label="GitHub repo">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
       </div>
-      <div class="project-name">CFD Analysis: Ancient vs Modern Structures</div>
-      <div class="project-desc">Research project testing whether ancient architectural forms are aerodynamically superior to modern ones. Used ANSYS Fluent CFD simulation and physical wind tunnel testing — then validated the hypothesis with data.</div>
-      <ul class="project-highlights">
+      <div class="proj-name">CFD Analysis: Ancient vs Modern Structures</div>
+      <div class="proj-desc">Research project testing whether ancient architectural forms are aerodynamically superior to modern ones, validated with ANSYS Fluent CFD and wind tunnel testing.</div>
+      <ul class="proj-points">
         <li>Ancient structures showed consistently lower drag coefficients</li>
         <li>CFD predictions validated against physical wind tunnel measurements</li>
-        <li>Python pipeline: simulation → extraction → predictive analysis → conclusion</li>
+        <li>Python pipeline: simulation → extraction → analysis → conclusion</li>
       </ul>
-      <div class="project-tags">
-        <span>ANSYS Fluent</span><span>Python</span><span>CFD</span><span>Wind Tunnel</span><span>Research</span>
-      </div>
+      <div class="proj-tags"><span class="chip">ANSYS Fluent</span><span class="chip">Python</span><span class="chip">CFD</span><span class="chip">Research</span></div>
     </div>
 
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="alt-bg">
-<div class="inner">
-  <p class="section-label reveal">04 // skills</p>
-  <h2 class="section-title reveal">Tech Stack</h2>
+<section id="skills">
+  <div class="sec-head snap">
+    <span class="sec-plate orange stud-strip"><span class="studs"><span></span><span></span><span></span></span>My Brick Box</span>
+  </div>
   <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Languages</div>
-      <div class="skill-tags"><span>Python</span><span>SQL</span></div>
+    <div class="skill-brick sb-red stud-strip snap"><span class="studs"><span></span><span></span><span></span></span>
+      <div class="skill-title">Languages</div>
+      <div class="skill-tags"><span class="chip">Python</span><span class="chip">SQL</span></div>
     </div>
-    <div class="skill-group reveal reveal-delay-1">
-      <div class="skill-group-title">ML / Data Science</div>
-      <div class="skill-tags"><span>scikit-learn</span><span>XGBoost</span><span>pandas</span><span>NumPy</span><span>matplotlib</span><span>seaborn</span></div>
+    <div class="skill-brick sb-yellow stud-strip snap snap-d1"><span class="studs"><span></span><span></span><span></span></span>
+      <div class="skill-title">ML / Data Science</div>
+      <div class="skill-tags"><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">matplotlib</span><span class="chip">seaborn</span></div>
     </div>
-    <div class="skill-group reveal reveal-delay-2">
-      <div class="skill-group-title">Agentic AI</div>
-      <div class="skill-tags"><span>LLM Agents</span><span>RAG</span><span>Tool Use</span><span>Ollama</span><span>Supermemory</span><span>Local LLM</span><span>Prompt Engineering</span></div>
+    <div class="skill-brick sb-blue stud-strip snap snap-d2"><span class="studs"><span></span><span></span><span></span></span>
+      <div class="skill-title">Agentic AI</div>
+      <div class="skill-tags"><span class="chip">LLM Agents</span><span class="chip">RAG</span><span class="chip">Tool Use</span><span class="chip">Ollama</span><span class="chip">Supermemory</span><span class="chip">Prompt Engineering</span></div>
     </div>
-    <div class="skill-group reveal reveal-delay-3">
-      <div class="skill-group-title">Deep Learning / LLM</div>
-      <div class="skill-tags"><span>PyTorch</span><span>HuggingFace</span><span>Qwen 2.5</span><span>Stockfish Integration</span><span>RNN</span></div>
+    <div class="skill-brick sb-green stud-strip snap"><span class="studs"><span></span><span></span><span></span></span>
+      <div class="skill-title">Deep Learning / LLM</div>
+      <div class="skill-tags"><span class="chip">PyTorch</span><span class="chip">HuggingFace</span><span class="chip">Qwen 2.5</span><span class="chip">RNN</span></div>
     </div>
-    <div class="skill-group reveal reveal-delay-3">
-      <div class="skill-group-title">Data Platforms</div>
-      <div class="skill-tags"><span>Azure Databricks</span><span>Azure Data Factory</span><span>Snowflake</span><span>Power BI</span></div>
+    <div class="skill-brick sb-orange stud-strip snap snap-d1"><span class="studs"><span></span><span></span><span></span></span>
+      <div class="skill-title">Data Platforms</div>
+      <div class="skill-tags"><span class="chip">Azure Databricks</span><span class="chip">Azure Data Factory</span><span class="chip">Snowflake</span><span class="chip">Power BI</span></div>
     </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Cloud & Infrastructure</div>
-      <div class="skill-tags"><span>AWS</span><span>Azure</span><span>Red Hat</span><span>Ubuntu</span></div>
-    </div>
-    <div class="skill-group reveal reveal-delay-1">
-      <div class="skill-group-title">DevOps</div>
-      <div class="skill-tags"><span>Terraform</span><span>Git / GitLab</span><span>CI/CD</span><span>Puppet</span><span>RHCSA Certified</span></div>
+    <div class="skill-brick sb-red stud-strip snap snap-d2"><span class="studs"><span></span><span></span><span></span></span>
+      <div class="skill-title">Cloud, Infra &amp; DevOps</div>
+      <div class="skill-tags"><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Red Hat</span><span class="chip">Terraform</span><span class="chip">Git / GitLab</span><span class="chip">CI/CD</span><span class="chip">RHCSA Certified</span></div>
     </div>
   </div>
-</div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <p class="section-label reveal">05 // contact</p>
-  <h2 class="section-title reveal">Get In Touch</h2>
-  <div class="contact-wrapper reveal">
-    <h3>Let's Work Together</h3>
+  <div class="sec-head snap">
+    <span class="sec-plate yellow stud-strip"><span class="studs"><span></span><span></span><span></span></span>Get In Touch</span>
+  </div>
+  <div class="contact-brick stud-strip snap">
+    <span class="studs"><span></span><span></span><span></span><span></span><span></span></span>
+    <h3>Let's Build Something Together</h3>
     <p>I'm actively looking for Data Scientist and AI Engineer roles. Whether you have an opportunity, a question, or just want to talk data, my inbox is open.</p>
-    <div class="contact-links">
-      <a href="mailto:qyj25002@uconn.edu" class="contact-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        qyj25002@uconn.edu
-      </a>
-      <a href="https://linkedin.com/in/praveen-kumar-ponnugupati" target="_blank" class="contact-link">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/praveenkumar-ponnugupati" target="_blank" class="contact-link">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="resume.pdf" download="Praveen_Kumar_Ponnugupati_Resume.pdf" class="contact-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Resume
-      </a>
+    <div class="contact-btns">
+      <a href="mailto:qyj25002@uconn.edu" class="btn btn-red">Email Me</a>
+      <a href="https://linkedin.com/in/praveen-kumar-ponnugupati" target="_blank" class="btn btn-blue">LinkedIn</a>
+      <a href="https://github.com/praveenkumar-ponnugupati" target="_blank" class="btn btn-green">GitHub</a>
     </div>
   </div>
 </section>
 
 <footer>
-  Designed &amp; built by <span>Praveen Kumar Ponnugupati</span> · 2026
+  Built brick by brick
+  <span class="brick-dot" style="background:var(--red)"></span><span class="brick-dot" style="background:var(--yellow)"></span><span class="brick-dot" style="background:var(--blue)"></span><span class="brick-dot" style="background:var(--green)"></span>
+  by <strong>Praveen Kumar Ponnugupati</strong> · 2026
 </footer>
 
 <script>
-// ── TYPED HERO SUBTITLE ──
+// ── TYPED SUBTITLE ──
 const phrases = [
   "AI agents that remember.",
   "models that explain themselves.",
   "data into decisions.",
-  "intelligent systems end-to-end."
+  "systems, brick by brick."
 ];
 let pi = 0, ci = 0, deleting = false, pause = 0;
-const el = document.getElementById('typed');
+const typedEl = document.getElementById('typed');
 function type() {
   const word = phrases[pi];
   if (pause > 0) { pause--; setTimeout(type, 80); return; }
   if (!deleting) {
-    el.textContent = word.slice(0, ci + 1);
-    ci++;
+    typedEl.textContent = word.slice(0, ci + 1); ci++;
     if (ci === word.length) { deleting = true; pause = 18; }
     setTimeout(type, 80);
   } else {
-    el.textContent = word.slice(0, ci - 1);
-    ci--;
+    typedEl.textContent = word.slice(0, ci - 1); ci--;
     if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; pause = 4; }
     setTimeout(type, 45);
   }
 }
-setTimeout(type, 800);
+setTimeout(type, 700);
 
-// ── TERMINAL ANIMATION ──
-const lines = [
-  { type: 'prompt', text: 'python predict.py --model student_risk' },
-  { type: 'out',    text: '» Loading dataset... [2847 records]' },
-  { type: 'out',    text: '» Applying SMOTE balancing...' },
-  { type: 'out',    text: '' },
-  { type: 'kv',     key: '  accuracy ', val: '0.93' },
-  { type: 'kv',     key: '  recall   ', val: '0.96' },
-  { type: 'kv',     key: '  f1-score ', val: '0.94' },
-  { type: 'out',    text: '' },
-  { type: 'out',    text: '» 5 behavioral clusters identified' },
-  { type: 'out',    text: '» Model saved → models/student_v2.pkl' },
-  { type: 'prompt', text: '█' },
-];
-const tb = document.getElementById('terminal-body');
-let li = 0;
-function renderLine(l) {
-  const span = document.createElement('span');
-  span.className = 't-line';
-  if (l.type === 'prompt') {
-    span.innerHTML = l.text === '█'
-      ? `<span class="t-prompt">❯ </span><span class="t-cursor"></span>`
-      : `<span class="t-prompt">❯ </span><span class="t-cmd">${l.text}</span>`;
-  } else if (l.type === 'kv') {
-    span.innerHTML = `<span class="t-out"><span class="t-key">${l.key}</span><span style="color:#555d68">= </span><span class="t-val">${l.val}</span></span>`;
-  } else {
-    span.innerHTML = `<span class="t-out">${l.text}</span>`;
-  }
-  tb.appendChild(span);
-}
-function animateTerminal() {
-  if (li < lines.length) {
-    renderLine(lines[li]);
-    li++;
-    setTimeout(animateTerminal, li === 1 ? 400 : lines[li-1].type === 'out' && lines[li-1].text === '' ? 80 : 220);
-  } else {
-    // Loop: pause, then clear and replay
-    setTimeout(() => { tb.innerHTML = ''; li = 0; animateTerminal(); }, 7000);
-  }
-}
-setTimeout(animateTerminal, 600);
+// ── HERO STAT TILES: staggered snap-in ──
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ── SCROLL REVEAL ──
+function render(el, value) {
+  const dec = +el.dataset.dec;
+  el.textContent = el.dataset.prefix + value.toFixed(dec) + el.dataset.suffix;
+}
+
+function countUp(el, duration) {
+  const target = parseFloat(el.dataset.to);
+  if (reduceMotion) { render(el, target); return; }
+  const started = performance.now();
+  function frame(now) {
+    const t = Math.min((now - started) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out, fast then settling
+    render(el, target * eased);
+    if (t < 1) requestAnimationFrame(frame); else render(el, target);
+  }
+  requestAnimationFrame(frame);
+}
+
+function buildStats() {
+  const tiles = document.querySelectorAll('#hero-stats .hero-stat-tile');
+  tiles.forEach((tile, i) => {
+    const num = tile.querySelector('.hero-stat-num');
+    render(num, 0);
+    tile.classList.remove('drop');
+    void tile.offsetWidth; // restart animation
+    const delay = 300 + i * 180;
+    if (reduceMotion) { tile.classList.add('drop'); render(num, parseFloat(num.dataset.to)); return; }
+    setTimeout(() => {
+      tile.classList.add('drop');
+      setTimeout(() => countUp(num, 900), 220); // starts as the brick lands
+    }, delay);
+  });
+}
+buildStats();
+
+// Replay the whole sequence whenever the hero scrolls back into view
+let heroWasOut = false;
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) { heroWasOut = true; }
+    else if (heroWasOut) { heroWasOut = false; buildStats(); }
+  });
+}, { threshold: 0.5 }).observe(document.getElementById('hero-stats'));
+
+// ── SNAP REVEAL ──
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.05 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Fallback: reveal anything already in (or near) the viewport — covers nav jumps & fast scrolls
+document.querySelectorAll('.snap').forEach(el => observer.observe(el));
 function revealFallback() {
   const vh = window.innerHeight;
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+  document.querySelectorAll('.snap:not(.visible)').forEach(el => {
     const r = el.getBoundingClientRect();
     if (r.top < vh + 100 && r.bottom > -100) el.classList.add('visible');
   });
@@ -807,17 +734,15 @@ window.addEventListener('scroll', revealFallback, { passive: true });
 window.addEventListener('load', revealFallback);
 setInterval(revealFallback, 1500);
 
-// ── SCROLL SPY NAV (position-based, bottom-aware) ──
+// ── SCROLL SPY ──
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 function setActive(id) {
   navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
 }
 function updateSpy() {
-  // At (or near) the bottom of the page, always highlight the last section
   if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 80) {
-    setActive(sections[sections.length - 1].id);
-    return;
+    setActive(sections[sections.length - 1].id); return;
   }
   let current = '';
   sections.forEach(s => {
@@ -827,6 +752,22 @@ function updateSpy() {
 }
 window.addEventListener('scroll', updateSpy, { passive: true });
 updateSpy();
+
+// ── SECTION PLATES: press to jump to next section ──
+const sectionOrder = ['about', 'experience', 'projects', 'skills', 'contact'];
+document.querySelectorAll('.sec-plate').forEach(plate => {
+  plate.setAttribute('role', 'button');
+  plate.setAttribute('tabindex', '0');
+  plate.title = 'Go to next section';
+  function go() {
+    const currentId = plate.closest('section').id;
+    const idx = sectionOrder.indexOf(currentId);
+    const nextId = idx === sectionOrder.length - 1 ? 'hero' : sectionOrder[idx + 1];
+    document.getElementById(nextId).scrollIntoView({ behavior: 'smooth' });
+  }
+  plate.addEventListener('click', go);
+  plate.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+});
 </script>
 </body>
 </html>
