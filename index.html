@@ -194,7 +194,6 @@ section { max-width: 1120px; margin: 0 auto; padding: 68px 5%; scroll-margin-top
 }
 .hero-stat-tile .studs { left: 50%; transform: translateX(-50%); }
 .hst-red { background: var(--red); }
-.hst-yellow { background: var(--yellow); color: var(--ink); }
 .hst-blue { background: var(--blue); }
 .hst-green { background: var(--green); }
 .hero-stat-num { font-family: var(--font-h); font-weight: 800; font-size: 1.7rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
@@ -365,9 +364,8 @@ footer .brick-dot {
     <div class="chart-title">quick stats</div>
     <div class="hero-stats" id="hero-stats">
       <div class="hero-stat-tile hst-red stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="3.5" data-dec="1" data-prefix="" data-suffix="+">0+</div><div class="hero-stat-label">years in production</div></div>
-      <div class="hero-stat-tile hst-blue stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="8" data-dec="0" data-prefix="" data-suffix="%">0%</div><div class="hero-stat-label">incidents cut</div></div>
       <div class="hero-stat-tile hst-green stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="2" data-dec="0" data-prefix="$" data-suffix="K">$0K</div><div class="hero-stat-label">merit scholarship</div></div>
-      <div class="hero-stat-tile hst-yellow stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" data-to="8" data-dec="0" data-prefix="" data-suffix="">0</div><div class="hero-stat-label">projects shipped</div></div>
+      <div class="hero-stat-tile hst-blue stud-strip" id="gh-tile"><span class="studs"><span></span><span></span></span><div class="hero-stat-num" id="gh-contrib" data-to="107" data-dec="0" data-prefix="" data-suffix="">0</div><div class="hero-stat-label">GitHub contributions</div></div>
     </div>
   </div>
 </section>
@@ -679,15 +677,20 @@ function render(el, value) {
   el.textContent = el.dataset.prefix + value.toFixed(dec) + el.dataset.suffix;
 }
 
-function countUp(el, duration) {
+function countUp(el, duration, from) {
   const target = parseFloat(el.dataset.to);
-  if (reduceMotion) { render(el, target); return; }
+  const start = from === undefined ? 0 : from;
+  el.dataset.done = '0';
+  if (reduceMotion) { render(el, target); el.dataset.done = '1'; return; }
   const started = performance.now();
   function frame(now) {
-    const t = Math.min((now - started) / duration, 1);
+    // rAF hands back the frame's start time, which can precede `started`; clamp
+    // it or the first frames render negative numbers.
+    const t = Math.max(0, Math.min((now - started) / duration, 1));
     const eased = 1 - Math.pow(1 - t, 3); // ease-out, fast then settling
-    render(el, target * eased);
-    if (t < 1) requestAnimationFrame(frame); else render(el, target);
+    render(el, start + (target - start) * eased);
+    if (t < 1) requestAnimationFrame(frame);
+    else { render(el, target); el.dataset.done = '1'; }
   }
   requestAnimationFrame(frame);
 }
@@ -708,6 +711,29 @@ function buildStats() {
   });
 }
 buildStats();
+
+// ── LIVE GITHUB CONTRIBUTIONS ──
+// data/github.json is rewritten every Monday by a scheduled GitHub Action.
+// The number baked into data-to is the fallback when the fetch fails.
+(function () {
+  const el = document.getElementById('gh-contrib');
+  if (!el) return;
+
+  function apply(value, updated) {
+    // Wait for the opening animation to settle before retargeting the tile
+    if (el.dataset.done !== '1') { setTimeout(() => apply(value, updated), 200); return; }
+    if (updated) document.getElementById('gh-tile').title = 'Last 365 days, updated ' + updated;
+    const previous = parseFloat(el.dataset.to);
+    if (value === previous) return;
+    el.dataset.to = value;
+    countUp(el, 600, previous);
+  }
+
+  fetch('data/github.json', { cache: 'no-cache' })
+    .then(r => (r.ok ? r.json() : Promise.reject(new Error(r.status))))
+    .then(d => { if (Number.isFinite(d.contributions)) apply(d.contributions, d.updated); })
+    .catch(() => { /* keep the baked-in fallback */ });
+})();
 
 // Replay the whole sequence whenever the hero scrolls back into view
 let heroWasOut = false;
