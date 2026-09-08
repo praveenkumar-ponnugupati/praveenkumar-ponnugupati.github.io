@@ -104,7 +104,8 @@ nav {
 .nav-links a.active { background: var(--yellow); border-color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
 
 /* ═══════════ SECTIONS ═══════════ */
-section { max-width: 1120px; margin: 0 auto; padding: 84px 5%; }
+section { max-width: 1120px; margin: 0 auto; padding: 120px 5%; }
+section:not(#hero) { border-top: 1px solid var(--line); }
 .sec-head { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
 .sec-plate {
   position: relative; padding: 10px 22px 12px; border-radius: 6px;
@@ -171,50 +172,31 @@ section { max-width: 1120px; margin: 0 auto; padding: 84px 5%; }
 .btn-blue { background: var(--blue); }
 .btn-green { background: var(--green); }
 
-/* hero LEGO bar chart */
+/* hero LEGO stat tiles */
 .hero-right { flex: 1; display: flex; flex-direction: column; align-items: center; }
 .chart-title {
   font-family: var(--font-m); font-size: 0.78rem; color: var(--muted);
-  margin-bottom: 34px; letter-spacing: 1px;
+  margin-bottom: 20px; letter-spacing: 1px;
 }
-.brick-chart {
-  display: flex; align-items: flex-end; gap: 26px; height: 300px;
-  padding: 0 10px;
+.hero-stats { display: flex; flex-direction: column; gap: 16px; width: 220px; }
+.hero-stat-tile {
+  position: relative; border-radius: 10px; padding: 20px 16px 16px; text-align: center;
+  color: #fff; box-shadow: inset 0 -5px 0 rgba(0,0,0,0.22), 0 5px 0 rgba(0,0,0,0.15);
+  opacity: 0; transform: translateY(-28px);
 }
-.stack { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
-.stack .bricks { display: flex; flex-direction: column-reverse; }
-.chart-brick {
-  width: 64px; height: 30px; border-radius: 5px; position: relative;
-  box-shadow: inset 0 -5px 0 rgba(0,0,0,0.22), inset 0 2px 0 rgba(255,255,255,0.18);
-  margin-top: 2px; opacity: 0; transform: translateY(-220px);
-}
-.chart-brick.drop { animation: brickDrop 0.5s var(--snap) forwards; }
-@keyframes brickDrop {
-  0% { opacity: 0; transform: translateY(-220px); }
-  60% { opacity: 1; transform: translateY(6px); }
+.hero-stat-tile.drop { animation: statDrop 0.5s var(--snap) forwards; }
+@keyframes statDrop {
+  0% { opacity: 0; transform: translateY(-28px); }
+  70% { opacity: 1; transform: translateY(3px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-.chart-brick::before, .chart-brick::after {
-  content: ''; position: absolute; top: -7px; width: 16px; height: 9px;
-  border-radius: 4px 4px 2px 2px; background: inherit;
-  box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.28);
-}
-.chart-brick::before { left: 8px; } .chart-brick::after { right: 8px; }
-.cb-red { background: var(--red); } .cb-yellow { background: var(--yellow); }
-.cb-blue { background: var(--blue); } .cb-green { background: var(--green); }
-.stack-value {
-  font-family: var(--font-h); font-weight: 800; font-size: 1.15rem; margin-top: 12px;
-  opacity: 0; transition: opacity 0.4s;
-}
-.stack-value.show { opacity: 1; }
-.stack-label {
-  font-size: 0.7rem; color: var(--muted); text-align: center; margin-top: 2px;
-  font-family: var(--font-m); opacity: 0; transition: opacity 0.4s;
-}
-.stack-label.show { opacity: 1; }
-.stack-base {
-  width: 84px; height: 12px; background: #d8d4c8; border-radius: 3px;
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.12); margin-top: 4px;
+.hero-stat-tile .studs { left: 50%; transform: translateX(-50%); }
+.hst-red { background: var(--red); }
+.hst-yellow { background: var(--yellow); color: var(--ink); }
+.hst-green { background: var(--green); }
+.hero-stat-num { font-family: var(--font-h); font-weight: 800; font-size: 1.7rem; line-height: 1.1; }
+.hero-stat-label {
+  font-size: 0.75rem; font-family: var(--font-m); opacity: 0.9; margin-top: 4px;
 }
 
 /* ═══════════ ABOUT ═══════════ */
@@ -351,15 +333,14 @@ footer .brick-dot {
   .proj-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  .brick-chart { gap: 14px; }
-  .chart-brick { width: 48px; }
+  .hero-stats { width: 180px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="#hero"><span class="logo-brick"></span>Praveen K.</a>
+  <a class="nav-logo" href="#hero"><span class="logo-brick"></span>Praveen Kumar</a>
   <ul class="nav-links">
     <li><a href="#about" data-section="about">About</a></li>
     <li><a href="#experience" data-section="experience">Experience</a></li>
@@ -386,26 +367,11 @@ footer .brick-dot {
     </div>
   </div>
   <div class="hero-right">
-    <div class="chart-title">// my numbers, built brick by brick</div>
-    <div class="brick-chart" id="brick-chart">
-      <div class="stack">
-        <div class="bricks" data-count="5" data-color="cb-red"></div>
-        <div class="stack-base"></div>
-        <div class="stack-value">3.5+</div>
-        <div class="stack-label">years<br>industry</div>
-      </div>
-      <div class="stack">
-        <div class="bricks" data-count="7" data-color="cb-yellow"></div>
-        <div class="stack-base"></div>
-        <div class="stack-value">93%</div>
-        <div class="stack-label">best<br>accuracy</div>
-      </div>
-      <div class="stack">
-        <div class="bricks" data-count="4" data-color="cb-green"></div>
-        <div class="stack-base"></div>
-        <div class="stack-value">$2K</div>
-        <div class="stack-label">merit<br>scholarship</div>
-      </div>
+    <div class="chart-title">quick stats</div>
+    <div class="hero-stats" id="hero-stats">
+      <div class="hero-stat-tile hst-red stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num">3.5+</div><div class="hero-stat-label">years industry</div></div>
+      <div class="hero-stat-tile hst-yellow stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num">93%</div><div class="hero-stat-label">best accuracy</div></div>
+      <div class="hero-stat-tile hst-green stud-strip"><span class="studs"><span></span><span></span></span><div class="hero-stat-num">$2K</div><div class="hero-stat-label">merit scholarship</div></div>
     </div>
   </div>
 </section>
@@ -720,34 +686,16 @@ function type() {
 }
 setTimeout(type, 700);
 
-// ── LEGO BAR CHART ──
-function buildChart() {
-  const stacks = document.querySelectorAll('#brick-chart .stack');
-  let delay = 300;
-  stacks.forEach(stack => {
-    const holder = stack.querySelector('.bricks');
-    const n = parseInt(holder.dataset.count);
-    const color = holder.dataset.color;
-    for (let i = 0; i < n; i++) {
-      const b = document.createElement('div');
-      b.className = `chart-brick ${color}`;
-      holder.appendChild(b);
-      setTimeout(() => b.classList.add('drop'), delay);
-      delay += 140;
-    }
-    const val = stack.querySelector('.stack-value');
-    const lab = stack.querySelector('.stack-label');
-    setTimeout(() => { val.classList.add('show'); lab.classList.add('show'); }, delay + 100);
-    delay += 200;
+// ── HERO STAT TILES: staggered snap-in ──
+function buildStats() {
+  const tiles = document.querySelectorAll('#hero-stats .hero-stat-tile');
+  tiles.forEach((tile, i) => {
+    tile.classList.remove('drop');
+    void tile.offsetWidth; // restart animation
+    setTimeout(() => tile.classList.add('drop'), 300 + i * 180);
   });
-  // loop the build every 14s
-  setTimeout(() => {
-    document.querySelectorAll('#brick-chart .bricks').forEach(h => h.innerHTML = '');
-    document.querySelectorAll('#brick-chart .show').forEach(el => el.classList.remove('show'));
-    buildChart();
-  }, delay + 9000);
 }
-buildChart();
+buildStats();
 
 // ── SNAP REVEAL ──
 const observer = new IntersectionObserver((entries) => {
